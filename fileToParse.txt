@@ -1,0 +1,6 @@
+init: a is: on
+init: b is: on
+init: c is: off
+do: a isnow: off
+do: b isnow: on
+do: c isnow: off
