@@ -3,7 +3,10 @@
 package grammar;
 
 
-import dsl.*;
+import dsl.Action;
+import dsl.DSL;
+import dsl.Item;
+import dsl.State;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -65,17 +68,22 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 		Action action;
 		// States
 		for (RuleSetGrammarParser.StateContext sc : ctx.state()) {
+			//source item and state
 			Item t = dsl.getItemFromName(sc.TEXT().get(0).toString());
 			State s = ((sc.TEXT().get(1).toString()).equals("on") ? State.ON : State.OFF);
-			action = new Action(t, s);
-			dsl.getActions().add(action);
 
+			//dest item and state
+			Item t2 = dsl.getItemFromName(sc.TEXT().get(2).toString());
+			State s2 = ((sc.TEXT().get(3).toString()).equals("on") ? State.ON : State.OFF);
+			action = new Action(t, s, t2, s2);
+			dsl.getActions().add(action);
 		}
 
 		System.out.println("dsl : ");
 		System.out.println(dsl);
 
 	}
+
 	/**
 	 * {@inheritDoc}
 	 *

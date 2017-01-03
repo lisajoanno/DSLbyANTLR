@@ -6,31 +6,53 @@ package dsl;
  * Created by lisa on 01/01/17.
  */
 public class Action {
-    public Action(Item item) {
-        this.item = item;
+
+    private Item itemSrc;
+    private State stateSrc;
+
+    private Item itemDest;
+    private State stateDest;
+
+    public Action(Item itemSrc, State stateSrc, Item itemDest, State stateDest) {
+        this.itemSrc = itemSrc;
+        this.stateSrc = stateSrc;
+        this.itemDest = itemDest;
+        this.stateDest = stateDest;
     }
 
-    public Action(Item item, State nextState) {
-        this.item = item;
-        this.nextState = nextState;
+    public Action() {
     }
 
-    public Item getItem() {
-        return item;
+
+    public Item getItemSrc() {
+        return itemSrc;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItemSrc(Item itemSrc) {
+        this.itemSrc = itemSrc;
     }
 
-    public State getNextState() {
-        return nextState;
+    public State getStateSrc() {
+        return stateSrc;
     }
 
-    public void setNextState(State nextState) {
-        this.nextState = nextState;
+    public void setStateSrc(State stateSrc) {
+        this.stateSrc = stateSrc;
     }
 
-    private Item item;
-    private State nextState;
+    public Item getItemDest() {
+        return itemDest;
+    }
+
+    public void setItemDest(Item itemDest) {
+        this.itemDest = itemDest;
+    }
+
+    public State getStateDest() {
+        return stateDest;
+    }
+
+    public void setStateDest(State stateDest) {
+        this.stateDest = stateDest;
+    }
 }

@@ -1,6 +1,5 @@
-init: a is: on
-init: b is: on
-init: c is: off
-do: a isnow: off
-do: b isnow: on
-do: c isnow: off
+init: button1 is: on
+init: button2 is: off
+init: led is: off
+when: button1 is: off do: led isnow: on
+when: button2 is: on do: led isnow: off

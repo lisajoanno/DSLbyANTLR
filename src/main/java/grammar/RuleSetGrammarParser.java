@@ -16,10 +16,11 @@ public class RuleSetGrammarParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__3=1, T__2=2, T__1=3, T__0=4, WHITESPACE=5, TEXT=6, DIGIT=7, LETTER=8;
+		T__4=1, T__3=2, T__2=3, T__1=4, T__0=5, WHITESPACE=6, TEXT=7, DIGIT=8, 
+		LETTER=9;
 	public static final String[] tokenNames = {
-		"<INVALID>", "'do:'", "'init:'", "'isnow:'", "'is:'", "WHITESPACE", "TEXT", 
-		"DIGIT", "LETTER"
+		"<INVALID>", "'do:'", "'init:'", "'isnow:'", "'is:'", "'when:'", "WHITESPACE", 
+		"TEXT", "DIGIT", "LETTER"
 	};
 	public static final int
 		RULE_dsl = 0, RULE_init = 1, RULE_state = 2;
@@ -92,11 +93,11 @@ public class RuleSetGrammarParser extends Parser {
 				setState(9); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==T__2 );
+			} while ( _la==T__3 );
 			setState(14);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__3) {
+			while (_la==T__0) {
 				{
 				{
 				setState(11); state();
@@ -144,9 +145,9 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(17); match(T__2);
+			setState(17); match(T__3);
 			setState(18); match(TEXT);
-			setState(19); match(T__0);
+			setState(19); match(T__1);
 			setState(20); match(TEXT);
 			}
 		}
@@ -186,10 +187,14 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(22); match(T__3);
+			setState(22); match(T__0);
 			setState(23); match(TEXT);
 			setState(24); match(T__1);
 			setState(25); match(TEXT);
+			setState(26); match(T__4);
+			setState(27); match(TEXT);
+			setState(28); match(T__2);
+			setState(29); match(TEXT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -204,14 +209,15 @@ public class RuleSetGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n\36\4\2\t\2\4\3"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\13\"\4\2\t\2\4\3"+
 		"\t\3\4\4\t\4\3\2\6\2\n\n\2\r\2\16\2\13\3\2\7\2\17\n\2\f\2\16\2\22\13\2"+
-		"\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\2\2\5\2\4\6\2\2\34\2\t\3"+
-		"\2\2\2\4\23\3\2\2\2\6\30\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2\n\13\3\2\2\2"+
-		"\13\t\3\2\2\2\13\f\3\2\2\2\f\20\3\2\2\2\r\17\5\6\4\2\16\r\3\2\2\2\17\22"+
-		"\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\3\3\2\2\2\22\20\3\2\2\2\23\24"+
-		"\7\4\2\2\24\25\7\b\2\2\25\26\7\6\2\2\26\27\7\b\2\2\27\5\3\2\2\2\30\31"+
-		"\7\3\2\2\31\32\7\b\2\2\32\33\7\5\2\2\33\34\7\b\2\2\34\7\3\2\2\2\4\13\20";
+		"\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\2\2\5\2\4"+
+		"\6\2\2 \2\t\3\2\2\2\4\23\3\2\2\2\6\30\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2"+
+		"\n\13\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\20\3\2\2\2\r\17\5\6\4\2\16\r"+
+		"\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\3\3\2\2\2\22\20"+
+		"\3\2\2\2\23\24\7\4\2\2\24\25\7\t\2\2\25\26\7\6\2\2\26\27\7\t\2\2\27\5"+
+		"\3\2\2\2\30\31\7\7\2\2\31\32\7\t\2\2\32\33\7\6\2\2\33\34\7\t\2\2\34\35"+
+		"\7\3\2\2\35\36\7\t\2\2\36\37\7\5\2\2\37 \7\t\2\2 \7\3\2\2\2\4\13\20";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

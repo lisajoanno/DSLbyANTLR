@@ -44,10 +44,10 @@ public class DSL {
 
     public String toString() {
         String res = "";
-        res += "ITEMS : \n";
+        res += "INITIALIZATION : \n";
         for (Item i : items) res += "\t"+i.getItemName() + " : " + i.getCurrentState();
-        res += "\nACTIONS : \n";
-        for (Action a : actions) res += "\t"+a.getItem().getItemName() + " : " + a.getItem().getCurrentState() + " -> " + a.getNextState();
+        res += "\n\nSTATES : \n";
+        for (Action a : actions) res += "\t("+a.getItemSrc().getItemName() + " -> " + a.getStateSrc() + ") => (" + a.getItemDest().getItemName() + " -> " + a.getStateDest() + ")\n";
 
         return res;
     }
