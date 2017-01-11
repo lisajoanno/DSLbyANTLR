@@ -1,9 +1,5 @@
 grammar RuleSetGrammar;
 
-@header {
-package grammarGenerated;
-}
-
 dsl : (actuator | sensor)+ init+ state* ;
 
 // Lexer Rules
