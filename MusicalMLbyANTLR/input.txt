@@ -1,0 +1,24 @@
+color blue
+buzzer 9
+screen 12
+
+-refrain- { do @re
+*mi
+fa sol *sol
+}
+
+-oif- {
+do
+re do
+}
+
+score
+*do
+re
+@mi -oif- -refrain- mi
+@fa -refrain- *sol
+la
+-refrain- *do
+*do
+*re
+mi
