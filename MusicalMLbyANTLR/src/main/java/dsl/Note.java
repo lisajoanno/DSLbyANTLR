@@ -1,27 +1,30 @@
 package dsl;
 
+import dsl.enums.NoteDuration;
 import dsl.enums.NoteName;
 
 /**
+ * A note is a duration and a name, both described in enums because of their specificity.
+ *
  * Created by lisa on 11/01/17.
  */
 public class Note extends ScoreItem {
-    private int duration;
+    private NoteDuration duration;
     private NoteName noteName;
 
     public Note() {
     }
 
-    public Note(int duration, NoteName noteName) {
+    public Note(NoteDuration duration, NoteName noteName) {
         this.duration = duration;
         this.noteName = noteName;
     }
 
-    public int getDuration() {
+    public NoteDuration getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(NoteDuration duration) {
         this.duration = duration;
     }
 
@@ -35,6 +38,6 @@ public class Note extends ScoreItem {
 
     @Override
     public String toString() {
-        return "(" + duration + "s, " + noteName.getNoteName() + ")";
+        return "(" + duration.toString() + ", " + noteName.getNoteName() + ")";
     }
 }

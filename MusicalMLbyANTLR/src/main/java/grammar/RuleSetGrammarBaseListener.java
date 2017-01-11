@@ -5,8 +5,9 @@ import dsl.Macro;
 import dsl.Musical;
 import dsl.Note;
 import dsl.enums.Color;
+import dsl.enums.NoteDuration;
 import dsl.enums.NoteName;
-import dsl.exceptions.ColorDoesntExistsException;
+import dsl.exceptions.ColorDoesntExistException;
 import dsl.exceptions.MacroDoesntExistException;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -30,11 +31,12 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInit(@NotNull RuleSetGrammarParser.InitContext ctx) {
+	@Override
+	public void enterInit(@NotNull RuleSetGrammarParser.InitContext ctx) {
 
 	    try {
             musical.setColor(Color.getTheColor(ctx.COLOR().getText()));
-        } catch (ColorDoesntExistsException c) {
+        } catch (ColorDoesntExistException c) {
 	        //Problem with the color
             System.err.println("Your color doesn't exist !");
             //Default : blue
@@ -45,43 +47,35 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 		musical.setScreenPin(Integer.parseInt(ctx.PIN(1).toString()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInit(@NotNull RuleSetGrammarParser.InitContext ctx) { }
+	@Override
+	public void exitInit(@NotNull RuleSetGrammarParser.InitContext ctx) {
+
+	}
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNote(@NotNull RuleSetGrammarParser.NoteContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNote(@NotNull RuleSetGrammarParser.NoteContext ctx) { }
+	@Override
+	public void enterNote(@NotNull RuleSetGrammarParser.NoteContext ctx) { }
+
+	@Override
+	public void exitNote(@NotNull RuleSetGrammarParser.NoteContext ctx) {
+
+	}
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterScore(@NotNull RuleSetGrammarParser.ScoreContext ctx) {
+	@Override
+	public void enterScore(@NotNull RuleSetGrammarParser.ScoreContext ctx) {
 		for (int i = 0 ; i < ctx.getChildCount() ; i++) {
 			try {
 				RuleSetGrammarParser.NoteContext nc = (RuleSetGrammarParser.NoteContext) (ctx.getChild(i));
-
-				// NOTE PROCESS
-                int duration = (nc.SYMBOL() == null ? 1 : 2);
-                Note note = new Note();
-                note.setDuration(duration);
-                note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
-                musical.getMainScore().add(note);
-
+                musical.getMainScore().add(getNoteFromNoteContext(nc));
                 continue;
 			} catch (ClassCastException e) {
                 //The cast did not succeed -> it's not a note ! so it must be a macro
@@ -98,78 +92,85 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
         }
 
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitScore(@NotNull RuleSetGrammarParser.ScoreContext ctx) { }
+
+	@Override
+	public void exitScore(@NotNull RuleSetGrammarParser.ScoreContext ctx) {
+
+	}
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDsl(@NotNull RuleSetGrammarParser.DslContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
-        System.out.println(musical);
+	@Override
+	public void enterDsl(@NotNull RuleSetGrammarParser.DslContext ctx) { }
+
+	@Override
+	public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
+        System.err.println(musical);
     }
 
+
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMacro_def(@NotNull RuleSetGrammarParser.Macro_defContext ctx) {
+	@Override
+	public void enterMacro_def(@NotNull RuleSetGrammarParser.Macro_defContext ctx) {
 		Macro macro = new Macro();
 		macro.setMacroName(ctx.TEXT().getText());
 
 		List<Note> notes = new ArrayList<>();
 		for (RuleSetGrammarParser.NoteContext nc : ctx.note()) {
-			int duration = (nc.SYMBOL() == null ? 1 : 2);
-			Note note = new Note();
-			note.setDuration(duration);
-			note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
-			notes.add(note);
+			notes.add(getNoteFromNoteContext(nc));
 		}
 		macro.setNotes(notes);
 
 		musical.getMacros().add(macro);
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMacro_def(@NotNull RuleSetGrammarParser.Macro_defContext ctx) { }
+
+	@Override
+	public void exitMacro_def(@NotNull RuleSetGrammarParser.Macro_defContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
+	@Override
+    public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
+	@Override
+    public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitTerminal(@NotNull TerminalNode node) { }
+	@Override
+    public void visitTerminal(@NotNull TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
+	@Override
+    public void visitErrorNode(@NotNull ErrorNode node) { }
+
+
+
+    private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
+        Note note = new Note();
+        System.err.println(nc.SYMBOL());
+        NoteDuration duration = NoteDuration.getNoteDurationFromSymbol(nc.SYMBOL());
+        note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
+        note.setDuration(duration);
+        return note;
+    }
 }

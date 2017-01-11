@@ -7,15 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Main class for the musical.
+ *
+ * Contains pins and brick initialization, macros and the score.
+ *
  * Created by lisa on 11/01/17.
  */
 public class Musical {
+    // the display color on the RGB screen
     private Color color;
+    // the pin where the screen will be plugged
     private int screenPin;
+    // the pin where the buzzer will be plugged
     private int buzzerPin;
 
     private List<Macro> macros;
-    // liste soit de macro soit de notes
+    // ScoreItem -> notes, of a macro name, to be replaced by its notes
     private List<ScoreItem> mainScore;
 
     public Musical() {
