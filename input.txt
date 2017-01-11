@@ -1,5 +1,13 @@
-init: button1 is: on
-init: button2 is: off
-init: led is: off
-when: button1 is: off do: led isnow: on
-when: button2 is: on do: led isnow: off
+sensor button1 : 9
+sensor button2 : 10
+actuator led : 11
+init: on
+
+state on {
+    led <= on
+    when button1 is on => off
+}
+state off {
+    led <= off
+    when button2 is on and button1 is off => on
+}

@@ -22,6 +22,50 @@ public interface RuleSetGrammarListener extends ParseTreeListener {
 	void exitInit(@NotNull RuleSetGrammarParser.InitContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#actuator}.
+	 * @param ctx the parse tree
+	 */
+	void enterActuator(@NotNull RuleSetGrammarParser.ActuatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#actuator}.
+	 * @param ctx the parse tree
+	 */
+	void exitActuator(@NotNull RuleSetGrammarParser.ActuatorContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition(@NotNull RuleSetGrammarParser.ConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition(@NotNull RuleSetGrammarParser.ConditionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#action}.
+	 * @param ctx the parse tree
+	 */
+	void enterAction(@NotNull RuleSetGrammarParser.ActionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#action}.
+	 * @param ctx the parse tree
+	 */
+	void exitAction(@NotNull RuleSetGrammarParser.ActionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#sensor}.
+	 * @param ctx the parse tree
+	 */
+	void enterSensor(@NotNull RuleSetGrammarParser.SensorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#sensor}.
+	 * @param ctx the parse tree
+	 */
+	void exitSensor(@NotNull RuleSetGrammarParser.SensorContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link RuleSetGrammarParser#state}.
 	 * @param ctx the parse tree
 	 */
@@ -42,4 +86,15 @@ public interface RuleSetGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#transition}.
+	 * @param ctx the parse tree
+	 */
+	void enterTransition(@NotNull RuleSetGrammarParser.TransitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#transition}.
+	 * @param ctx the parse tree
+	 */
+	void exitTransition(@NotNull RuleSetGrammarParser.TransitionContext ctx);
 }

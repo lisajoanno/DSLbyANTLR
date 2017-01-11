@@ -31,6 +31,47 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	 */
 	@Override public void exitInit(@NotNull RuleSetGrammarParser.InitContext ctx) { }
 
+	@Override
+	public void enterActuator(@NotNull RuleSetGrammarParser.ActuatorContext ctx) {
+
+	}
+
+	@Override
+	public void exitActuator(@NotNull RuleSetGrammarParser.ActuatorContext ctx) {
+
+	}
+
+	@Override
+	public void enterCondition(@NotNull RuleSetGrammarParser.ConditionContext ctx) {
+
+	}
+
+	@Override
+	public void exitCondition(@NotNull RuleSetGrammarParser.ConditionContext ctx) {
+
+	}
+
+	@Override
+	public void enterAction(@NotNull RuleSetGrammarParser.ActionContext ctx) {
+
+	}
+
+	@Override
+	public void exitAction(@NotNull RuleSetGrammarParser.ActionContext ctx) {
+
+	}
+
+
+	@Override
+	public void enterSensor(@NotNull RuleSetGrammarParser.SensorContext ctx) {
+
+	}
+
+	@Override
+	public void exitSensor(@NotNull RuleSetGrammarParser.SensorContext ctx) {
+
+	}
+
 	/**
 	 * {@inheritDoc}
 	 *
@@ -55,7 +96,7 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 		dsl = new DSL();
 
 
-		// Initialisation
+	/*	// Initialisation
 		for (RuleSetGrammarParser.InitContext ic : ctx.init()) {
 			// set of the list of items (a name and a State)
 			String itemName = ic.TEXT().get(0).toString();
@@ -80,7 +121,7 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 		}
 
 		System.out.println("dsl : ");
-		System.out.println(dsl);
+		System.out.println(dsl);*/
 
 	}
 
@@ -90,6 +131,16 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) { }
+
+	@Override
+	public void enterTransition(@NotNull RuleSetGrammarParser.TransitionContext ctx) {
+
+	}
+
+	@Override
+	public void exitTransition(@NotNull RuleSetGrammarParser.TransitionContext ctx) {
+
+	}
 
 	/**
 	 * {@inheritDoc}

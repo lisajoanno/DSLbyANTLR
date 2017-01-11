@@ -32,6 +32,58 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterActuator(@NotNull RuleSetGrammarParser.ActuatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitActuator(@NotNull RuleSetGrammarParser.ActuatorContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCondition(@NotNull RuleSetGrammarParser.ConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondition(@NotNull RuleSetGrammarParser.ConditionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAction(@NotNull RuleSetGrammarParser.ActionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAction(@NotNull RuleSetGrammarParser.ActionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSensor(@NotNull RuleSetGrammarParser.SensorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSensor(@NotNull RuleSetGrammarParser.SensorContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterState(@NotNull RuleSetGrammarParser.StateContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -52,6 +104,19 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTransition(@NotNull RuleSetGrammarParser.TransitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTransition(@NotNull RuleSetGrammarParser.TransitionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
