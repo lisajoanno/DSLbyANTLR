@@ -167,7 +167,6 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 
     private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
         Note note = new Note();
-        System.err.println(nc.SYMBOL());
         NoteDuration duration = NoteDuration.getNoteDurationFromSymbol(nc.SYMBOL());
         note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
         note.setDuration(duration);
