@@ -6,53 +6,34 @@ package dsl;
  * Created by lisa on 01/01/17.
  */
 public class Action {
+    private Actuator actuator;
+    private BinaryState binaryState;
 
-    private Item itemSrc;
-    private State stateSrc;
-
-    private Item itemDest;
-    private State stateDest;
-
-    public Action(Item itemSrc, State stateSrc, Item itemDest, State stateDest) {
-        this.itemSrc = itemSrc;
-        this.stateSrc = stateSrc;
-        this.itemDest = itemDest;
-        this.stateDest = stateDest;
+    public Action(Actuator actuator, BinaryState binaryState) {
+        this.actuator = actuator;
+        this.binaryState = binaryState;
     }
 
     public Action() {
     }
 
-
-    public Item getItemSrc() {
-        return itemSrc;
+    public Actuator getActuator() {
+        return actuator;
     }
 
-    public void setItemSrc(Item itemSrc) {
-        this.itemSrc = itemSrc;
+    public void setActuator(Actuator actuator) {
+        this.actuator = actuator;
     }
 
-    public State getStateSrc() {
-        return stateSrc;
+    public BinaryState getBinaryState() {
+        return binaryState;
     }
 
-    public void setStateSrc(State stateSrc) {
-        this.stateSrc = stateSrc;
+    public void setBinaryState(BinaryState binaryState) {
+        this.binaryState = binaryState;
     }
 
-    public Item getItemDest() {
-        return itemDest;
-    }
-
-    public void setItemDest(Item itemDest) {
-        this.itemDest = itemDest;
-    }
-
-    public State getStateDest() {
-        return stateDest;
-    }
-
-    public void setStateDest(State stateDest) {
-        this.stateDest = stateDest;
+    public String toString(){
+        return "digitalWrite("+actuator.getPin()+","+binaryState+");\n";
     }
 }

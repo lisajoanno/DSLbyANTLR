@@ -3,14 +3,13 @@
 package grammar;
 
 
-import dsl.Action;
-import dsl.DSL;
-import dsl.Item;
-import dsl.State;
+import dsl.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import java.util.logging.SocketHandler;
 
 /**
  * This class provides an empty implementation of {@link RuleSetGrammarListener},
@@ -77,7 +76,9 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterState(@NotNull RuleSetGrammarParser.StateContext ctx) { }
+	@Override public void enterState(@NotNull RuleSetGrammarParser.StateContext ctx) {
+
+	}
 	/**
 	 * {@inheritDoc}
 	 *
@@ -95,33 +96,59 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	@Override public void enterDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
 		dsl = new DSL();
 
-
-	/*	// Initialisation
-		for (RuleSetGrammarParser.InitContext ic : ctx.init()) {
-			// set of the list of items (a name and a State)
-			String itemName = ic.TEXT().get(0).toString();
-			String stateName = ic.TEXT().get(1).toString();
-
-			State s = (stateName.equals("on") ? State.ON : State.OFF);
-			dsl.getItems().add(new Item(s, itemName));
+		for(RuleSetGrammarParser.SensorContext sc : ctx.sensor()){
+			Sensor s = new Sensor();
+			s.setName(sc.TEXT().toString());
+			s.setPin(Integer.parseInt(sc.DIGIT().getText()));
+			dsl.addBrick(s);
+			System.out.println("SENSOR "+sc.TEXT()+" DETECTED ON "+sc.DIGIT() );
 		}
 
-		Action action;
-		// States
-		for (RuleSetGrammarParser.StateContext sc : ctx.state()) {
-			//source item and state
-			Item t = dsl.getItemFromName(sc.TEXT().get(0).toString());
-			State s = ((sc.TEXT().get(1).toString()).equals("on") ? State.ON : State.OFF);
+		for(RuleSetGrammarParser.ActuatorContext ac : ctx.actuator()){
+			Actuator a = new Actuator();
+			a.setName(ac.TEXT().toString());
+			a.setPin(Integer.parseInt(ac.DIGIT().getText()));
+			dsl.addBrick(a);
+			System.out.println("ACTUATOR "+ac.TEXT()+" DETECTED ON "+ac.DIGIT() );
+		}
+		for(RuleSetGrammarParser.StateContext sc : ctx.state()) {
+			State s = new State(sc.TEXT().toString());
+			dsl.addState(s);
+		}
+		for(RuleSetGrammarParser.StateContext sc : ctx.state()){
+			State s = dsl.getState(sc.TEXT().toString());
+			System.out.println("STATE "+sc.TEXT());
+			for(RuleSetGrammarParser.ActionContext ac : sc.action()){
+				Action action = new Action();
+				action.setActuator((Actuator)dsl.getBrick(ac.TEXT().get(0).toString()));
+				action.setBinaryState(BinaryState.valueOf(ac.TEXT(1).toString().toUpperCase()));
+				s.addAction(action);
+				System.out.println("\tACTION "+ac.TEXT().get(0)+" <= "+ac.TEXT().get(1));
+			}
 
-			//dest item and state
-			Item t2 = dsl.getItemFromName(sc.TEXT().get(2).toString());
-			State s2 = ((sc.TEXT().get(3).toString()).equals("on") ? State.ON : State.OFF);
-			action = new Action(t, s, t2, s2);
-			dsl.getActions().add(action);
+			for(RuleSetGrammarParser.TransitionContext tc : sc.transition()){
+				Transition transition = new Transition();
+				transition.setTarget(dsl.getState(tc.TEXT().toString()));
+				System.out.println("\tTRANSITION TO STATE "+tc.TEXT());
+				for(RuleSetGrammarParser.ConditionContext cc : tc.condition()){
+					System.out.println("\t\t"+ cc.TEXT(0)+" IS " +cc.TEXT(1));
+					Condition condition = new Condition();
+					condition.setSensor((Sensor)dsl.getBrick(cc.TEXT(0).toString()));
+					condition.setBinaryState(BinaryState.HIGH);
+					transition.addCondition(condition);
+				}
+				s.addTransition(transition);
+			}
+
 		}
 
-		System.out.println("dsl : ");
-		System.out.println(dsl);*/
+		for(RuleSetGrammarParser.InitContext ic : ctx.init()){
+			System.out.println("INITIAL STATE:"+ic.TEXT());
+			//TODO set the initial state
+			dsl.setInitState(ic.TEXT().toString());
+		}
+		System.out.println(dsl.toString());
+
 
 	}
 

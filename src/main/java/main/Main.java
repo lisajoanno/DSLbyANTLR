@@ -34,6 +34,7 @@ public class Main {
             ParseTreeWalker.DEFAULT.walk(listener, tree);
         } catch (Exception e) {
             System.err.println("There was an exception somewhere");
+            e.printStackTrace();
         }
     }
 

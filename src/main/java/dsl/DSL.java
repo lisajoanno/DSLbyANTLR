@@ -1,54 +1,86 @@
 package dsl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by user on 01/01/17.
  */
 public class DSL {
-    //private Init initialisation;
-    private List<Action> actions;
+    private Map<String, Brick> bricks;
+    private Map<String, State> states;
+    private String initState;
+   public DSL(){
+       bricks = new HashMap<>();
+       states = new HashMap<>();
+   }
 
-    private List<Item> items;
-
-    public DSL() {
-        actions = new ArrayList<>();
-        items = new ArrayList<>();
+    public Map<String, Brick> getBricks() {
+        return bricks;
     }
 
-
-    public List<Action> getActions() {
-        return actions;
+    public void setBricks(Map<String, Brick> bricks) {
+        this.bricks = bricks;
     }
 
-    public void setActions(List<Action> actions) {
-        this.actions = actions;
+    public Map<String, State> getStates() {
+        return states;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public void setStates(Map<String, State> states) {
+        this.states = states;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public Item getItemFromName(String name) {
-        for (Item i : items) {
-            if (i.getItemName().equals(name)) return i;
+    public void addBrick(Brick b){
+        String name = b.getName();
+        if(bricks.containsKey(name)){
+            throw new RuntimeException("BRICKS ALREADY EXISTS");
         }
-        return null;
+        bricks.put(name,b);
     }
 
-    public String toString() {
-        String res = "";
-        res += "INITIALIZATION : \n";
-        for (Item i : items) res += "\t"+i.getItemName() + " : " + i.getCurrentState();
-        res += "\n\nSTATES : \n";
-        for (Action a : actions) res += "\t("+a.getItemSrc().getItemName() + " -> " + a.getStateSrc() + ") => (" + a.getItemDest().getItemName() + " -> " + a.getStateDest() + ")\n";
+    public void addState(State s){
+        String name = s.getName();
+        if(bricks.containsKey(name)){
+            throw new RuntimeException("STATE ALREADY EXISTS");
+        }
+        states.put(name,s);
+    }
 
-        return res;
+    public Brick getBrick(String name){
+        if(bricks.containsKey(name)){
+            return bricks.get(name);
+        }
+        throw  new RuntimeException("Non existent brick "+name);
+    }
+    public State getState(String name){
+        if(states.containsKey(name)){
+            return states.get(name);
+        }
+        throw new RuntimeException("Non existent state "+name);
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("void setup() {\n");
+        for(Brick b: bricks.values()){
+            sb.append(b.toString());
+        }
+        sb.append("}\n");
+
+        sb.append("long time = 0; long debounce = 200;\n");
+
+        for(State s: states.values()){
+            sb.append(s.toString());
+        }
+        sb.append("\n\n\nvoid loop() { state_"+initState+"(); }");
+        return sb.toString();
+    }
+
+    public void setInitState(String stateName){
+        if(states.containsKey(stateName)){
+            this.initState = stateName;
+        } else {
+            throw  new RuntimeException("INITIAL STATE "+stateName+" NOT FOUND");
+        }
     }
 }
