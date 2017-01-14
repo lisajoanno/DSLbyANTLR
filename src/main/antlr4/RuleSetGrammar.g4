@@ -1,7 +1,9 @@
 grammar RuleSetGrammar;
 
+
 @header {
 }
+
 
 dsl : (actuator | sensor)+ init+ state* ;
 
