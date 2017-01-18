@@ -17,12 +17,13 @@ public class RuleSetGrammarParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__7=1, T__6=2, T__5=3, T__4=4, T__3=5, T__2=6, T__1=7, T__0=8, SYMBOL=9, 
-		NOTE=10, WHITESPACE=11, COLOR=12, NOTE_NAME=13, TEXT=14, LETTER=15, PIN=16;
+		T__10=1, T__9=2, T__8=3, T__7=4, T__6=5, T__5=6, T__4=7, T__3=8, T__2=9, 
+		T__1=10, T__0=11, SYMBOL=12, NOTE=13, WHITESPACE=14, COLOR=15, NOTE_NAME=16, 
+		TEXT=17, LETTER=18, DIGIT=19;
 	public static final String[] tokenNames = {
-		"<INVALID>", "'- '", "'screen '", "'score'", "'color '", "'{'", "'}'", 
-		"'-'", "'buzzer '", "SYMBOL", "NOTE", "WHITESPACE", "COLOR", "NOTE_NAME", 
-		"TEXT", "LETTER", "PIN"
+		"<INVALID>", "'- '", "' '", "'screen '", "'score'", "'color '", "'+'", 
+		"'{'", "'}'", "'-'", "'buzzer '", "'.'", "SYMBOL", "NOTE", "WHITESPACE", 
+		"COLOR", "NOTE_NAME", "TEXT", "LETTER", "DIGIT"
 	};
 	public static final int
 		RULE_dsl = 0, RULE_init = 1, RULE_macro_def = 2, RULE_note = 3, RULE_score = 4;
@@ -87,7 +88,7 @@ public class RuleSetGrammarParser extends Parser {
 			setState(14);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__1) {
+			while (_la==T__2) {
 				{
 				{
 				setState(11); macro_def();
@@ -97,7 +98,7 @@ public class RuleSetGrammarParser extends Parser {
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(17); match(T__5);
+			setState(17); match(T__7);
 			setState(18); score();
 			}
 		}
@@ -114,10 +115,10 @@ public class RuleSetGrammarParser extends Parser {
 
 	public static class InitContext extends ParserRuleContext {
 		public TerminalNode COLOR() { return getToken(RuleSetGrammarParser.COLOR, 0); }
-		public List<TerminalNode> PIN() { return getTokens(RuleSetGrammarParser.PIN); }
-		public TerminalNode PIN(int i) {
-			return getToken(RuleSetGrammarParser.PIN, i);
+		public TerminalNode DIGIT(int i) {
+			return getToken(RuleSetGrammarParser.DIGIT, i);
 		}
+		public List<TerminalNode> DIGIT() { return getTokens(RuleSetGrammarParser.DIGIT); }
 		public InitContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -138,12 +139,12 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20); match(T__4);
+			setState(20); match(T__6);
 			setState(21); match(COLOR);
-			setState(22); match(T__0);
-			setState(23); match(PIN);
-			setState(24); match(T__6);
-			setState(25); match(PIN);
+			setState(22); match(T__1);
+			setState(23); match(DIGIT);
+			setState(24); match(T__8);
+			setState(25); match(DIGIT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -186,24 +187,32 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(27); match(T__1);
+			setState(27); match(T__2);
 			setState(28); match(TEXT);
-			setState(29); match(T__7);
-			setState(30); match(T__3);
-			setState(32); 
+			setState(29); match(T__10);
+			setState(30); match(T__4);
+			setState(32);
+			_la = _input.LA(1);
+			if (_la==T__9) {
+				{
+				setState(31); match(T__9);
+				}
+			}
+
+			setState(35); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(31); note();
+				setState(34); note();
 				}
 				}
-				setState(34); 
+				setState(37); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==SYMBOL || _la==NOTE );
-			setState(36); match(T__2);
+			setState(39); match(T__3);
 			}
 		}
 		catch (RecognitionException re) {
@@ -219,6 +228,7 @@ public class RuleSetGrammarParser extends Parser {
 
 	public static class NoteContext extends ParserRuleContext {
 		public TerminalNode NOTE() { return getToken(RuleSetGrammarParser.NOTE, 0); }
+		public TerminalNode DIGIT() { return getToken(RuleSetGrammarParser.DIGIT, 0); }
 		public TerminalNode SYMBOL() { return getToken(RuleSetGrammarParser.SYMBOL, 0); }
 		public NoteContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -239,17 +249,62 @@ public class RuleSetGrammarParser extends Parser {
 		enterRule(_localctx, 6, RULE_note);
 		int _la;
 		try {
+			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(42);
 			_la = _input.LA(1);
 			if (_la==SYMBOL) {
 				{
-				setState(38); match(SYMBOL);
+				setState(41); match(SYMBOL);
 				}
 			}
 
-			setState(41); match(NOTE);
+			setState(44); match(NOTE);
+			setState(46);
+			_la = _input.LA(1);
+			if (_la==DIGIT) {
+				{
+				setState(45); match(DIGIT);
+				}
+			}
+
+			setState(51);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(48);
+					_la = _input.LA(1);
+					if ( !(_la==T__5 || _la==T__2) ) {
+					_errHandler.recoverInline(this);
+					}
+					consume();
+					}
+					} 
+				}
+				setState(53);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			}
+			setState(55);
+			_la = _input.LA(1);
+			if (_la==T__0) {
+				{
+				setState(54); match(T__0);
+				}
+			}
+
+			setState(58);
+			_la = _input.LA(1);
+			if (_la==T__9) {
+				{
+				setState(57); match(T__9);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -295,26 +350,26 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(47); 
+			setState(64); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
-				setState(47);
+				setState(64);
 				switch (_input.LA(1)) {
 				case SYMBOL:
 				case NOTE:
 					{
-					setState(43); note();
+					setState(60); note();
 					}
 					break;
-				case T__1:
+				case T__2:
 					{
-					setState(44); match(T__1);
-					setState(45); match(TEXT);
-					setState(46);
+					setState(61); match(T__2);
+					setState(62); match(TEXT);
+					setState(63);
 					_la = _input.LA(1);
-					if ( !(_la==T__7 || _la==T__1) ) {
+					if ( !(_la==T__10 || _la==T__2) ) {
 					_errHandler.recoverInline(this);
 					}
 					consume();
@@ -324,10 +379,10 @@ public class RuleSetGrammarParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(49); 
+				setState(66); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << SYMBOL) | (1L << NOTE))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << SYMBOL) | (1L << NOTE))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -342,20 +397,25 @@ public class RuleSetGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\22\66\4\2\t\2\4\3"+
-		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\7\2\17\n\2\f\2\16\2\22\13\2\3\2\3"+
-		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\6\4#\n\4\r\4\16"+
-		"\4$\3\4\3\4\3\5\5\5*\n\5\3\5\3\5\3\6\3\6\3\6\3\6\6\6\62\n\6\r\6\16\6\63"+
-		"\3\6\2\2\7\2\4\6\b\n\2\3\4\2\3\3\t\t\65\2\f\3\2\2\2\4\26\3\2\2\2\6\35"+
-		"\3\2\2\2\b)\3\2\2\2\n\61\3\2\2\2\f\20\5\4\3\2\r\17\5\6\4\2\16\r\3\2\2"+
-		"\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\23\3\2\2\2\22\20\3\2\2"+
-		"\2\23\24\7\5\2\2\24\25\5\n\6\2\25\3\3\2\2\2\26\27\7\6\2\2\27\30\7\16\2"+
-		"\2\30\31\7\n\2\2\31\32\7\22\2\2\32\33\7\4\2\2\33\34\7\22\2\2\34\5\3\2"+
-		"\2\2\35\36\7\t\2\2\36\37\7\20\2\2\37 \7\3\2\2 \"\7\7\2\2!#\5\b\5\2\"!"+
-		"\3\2\2\2#$\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%&\3\2\2\2&\'\7\b\2\2\'\7\3\2\2"+
-		"\2(*\7\13\2\2)(\3\2\2\2)*\3\2\2\2*+\3\2\2\2+,\7\f\2\2,\t\3\2\2\2-\62\5"+
-		"\b\5\2./\7\t\2\2/\60\7\20\2\2\60\62\t\2\2\2\61-\3\2\2\2\61.\3\2\2\2\62"+
-		"\63\3\2\2\2\63\61\3\2\2\2\63\64\3\2\2\2\64\13\3\2\2\2\7\20$)\61\63";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\25G\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\7\2\17\n\2\f\2\16\2\22\13\2\3\2\3\2"+
+		"\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\5\4#\n\4\3\4\6\4"+
+		"&\n\4\r\4\16\4\'\3\4\3\4\3\5\5\5-\n\5\3\5\3\5\5\5\61\n\5\3\5\7\5\64\n"+
+		"\5\f\5\16\5\67\13\5\3\5\5\5:\n\5\3\5\5\5=\n\5\3\6\3\6\3\6\3\6\6\6C\n\6"+
+		"\r\6\16\6D\3\6\2\2\7\2\4\6\b\n\2\4\4\2\b\b\13\13\4\2\3\3\13\13K\2\f\3"+
+		"\2\2\2\4\26\3\2\2\2\6\35\3\2\2\2\b,\3\2\2\2\nB\3\2\2\2\f\20\5\4\3\2\r"+
+		"\17\5\6\4\2\16\r\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21"+
+		"\23\3\2\2\2\22\20\3\2\2\2\23\24\7\6\2\2\24\25\5\n\6\2\25\3\3\2\2\2\26"+
+		"\27\7\7\2\2\27\30\7\21\2\2\30\31\7\f\2\2\31\32\7\25\2\2\32\33\7\5\2\2"+
+		"\33\34\7\25\2\2\34\5\3\2\2\2\35\36\7\13\2\2\36\37\7\23\2\2\37 \7\3\2\2"+
+		" \"\7\t\2\2!#\7\4\2\2\"!\3\2\2\2\"#\3\2\2\2#%\3\2\2\2$&\5\b\5\2%$\3\2"+
+		"\2\2&\'\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2()\3\2\2\2)*\7\n\2\2*\7\3\2\2\2+"+
+		"-\7\16\2\2,+\3\2\2\2,-\3\2\2\2-.\3\2\2\2.\60\7\17\2\2/\61\7\25\2\2\60"+
+		"/\3\2\2\2\60\61\3\2\2\2\61\65\3\2\2\2\62\64\t\2\2\2\63\62\3\2\2\2\64\67"+
+		"\3\2\2\2\65\63\3\2\2\2\65\66\3\2\2\2\669\3\2\2\2\67\65\3\2\2\28:\7\r\2"+
+		"\298\3\2\2\29:\3\2\2\2:<\3\2\2\2;=\7\4\2\2<;\3\2\2\2<=\3\2\2\2=\t\3\2"+
+		"\2\2>C\5\b\5\2?@\7\13\2\2@A\7\23\2\2AC\t\3\2\2B>\3\2\2\2B?\3\2\2\2CD\3"+
+		"\2\2\2DB\3\2\2\2DE\3\2\2\2E\13\3\2\2\2\f\20\"\',\60\659<BD";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

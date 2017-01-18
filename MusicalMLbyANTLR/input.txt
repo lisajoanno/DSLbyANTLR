@@ -2,23 +2,18 @@ color blue
 buzzer 9
 screen 12
 
--refrain- { do @re
-*mi
-fa sol *sol
+
+-refrain- { #do3+ sol3.
+¤re4++. fa4 ¤mi3. #do--
+do--
 }
 
--oif- {
-do
-re do
+-oif- { #do3+ sol3.
+¤re4++. fa4 ¤mi3
 }
 
 score
-*do
-re
-@mi -oif- -refrain- mi
-@fa -refrain- *sol
-la
--refrain- *do
-*do
-*re
-mi
+-oif- -refrain- #do3+ sol3. ¤re4++. fa4 ¤mi3. #do--
+#do3+ sol3. ¤re4++. fa4 ¤mi3. #do--
+
+-refrain- #do3+ sol3. ¤re4++. fa4 ¤mi3. #do--

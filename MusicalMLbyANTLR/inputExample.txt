@@ -22,3 +22,45 @@ la
 *do
 *re
 mi
+
+
+
+color blue
+buzzer 9
+screen 12
+
+
+//rien:noire
++1:blanche
++2:ronde
+-1.croche
+-2:demiecroche
+
+#do3+. #sol3+. ¤re4++. fa4- ¤mi3. #do--.
+
+
+(mi- sol)- (¤fa-. sol la si)-- sol- (la si)--
+
+-refrain- { do @re
+*mi
+fa sol *sol
+}
+
+-oif- {
+do
+re do
+}
+
+score
+-ttt-
+-refrain- { *do
+re
+@mi } -oif- -refrain- mi
+@fa -refrain- *sol
+la
+-refrain- *do
+*do -ttt- {
+
+}
+*re
+mi

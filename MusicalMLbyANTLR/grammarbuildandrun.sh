@@ -7,6 +7,7 @@ read input_variable
 if [ $input_variable = "y" ]
 then
     echo "Ok let's do this."
+    echo "Processing..."
     mvn -q clean package
     sh copy.sh
     mvn -q clean package

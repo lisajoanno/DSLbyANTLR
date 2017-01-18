@@ -1,5 +1,6 @@
 package main;
 
+import dsl.Musical;
 import grammar.*;
 
 
@@ -9,6 +10,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 
 /**
  *
@@ -30,7 +32,7 @@ public class Main {
             RuleSetGrammarParser parser = new RuleSetGrammarParser(tokens);
 
             RuleSetGrammarParser.DslContext tree = parser.dsl();
-            RuleSetGrammarBaseListener listener = new RuleSetGrammarBaseListener();
+            MusicalListener listener = new MusicalListener();
             ParseTreeWalker.DEFAULT.walk(listener, tree);
         } catch (Exception e) {
 //            System.err.println("There was an exception somewhere");

@@ -1,9 +1,9 @@
 grammar RuleSetGrammar;
 
-SYMBOL : '@' | '*';
+SYMBOL : '¤' | '#';
 
 // On le place ici pour que ' ' soit d'abord matché avec ça
-NOTE : (NOTE_NAME ' '?) ;
+NOTE : (NOTE_NAME) ;
 
 WHITESPACE : ( '\t' | '\r' | ' ' | '\n'| '\u000C' )+ -> skip ;
 
@@ -17,12 +17,12 @@ TEXT : LETTER+ ;
 
 LETTER : ('a'..'z' | 'A'..'Z')+ ;
 
-PIN : ('1'..'9')+ ;
+DIGIT : ('1'..'9')+ ;
 
-init : 'color ' COLOR 'buzzer ' PIN 'screen ' PIN ;
+init : 'color ' COLOR 'buzzer ' DIGIT 'screen ' DIGIT ;
 
-macro_def : '-' TEXT '- ' '{' note+ '}' ;
+macro_def : '-' TEXT '- ' '{' ' '? note+ '}' ;
 
-note : SYMBOL? NOTE ;
+note : SYMBOL? NOTE  DIGIT? ('+' | '-')* '.'? ' '? ;
 
 score : (note | '-' TEXT ('-' | '- '))+;

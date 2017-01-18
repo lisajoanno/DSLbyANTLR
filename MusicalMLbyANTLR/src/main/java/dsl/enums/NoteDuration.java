@@ -12,14 +12,16 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 public enum NoteDuration {
     WHOLE, HALF, QUARTER, EIGHT, SIXTEEN;
 
+    /**
     public static NoteDuration getNoteDurationFromSymbol(TerminalNode symbol) {
         String symbolStr = (symbol == null ? "" : symbol.toString());
         switch (symbolStr) {
             case "@" : return HALF;
             case "*" : return QUARTER;
-            case "$" : return EIGHT;
+            case "#" : return EIGHT;
             case "¤" : return SIXTEEN;
-            default: return WHOLE;
+            default: return WHOLE; // noire
         }
     }
+     **/
 }
