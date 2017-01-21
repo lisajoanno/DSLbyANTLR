@@ -18,6 +18,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class provides an empty implementation of {@link RuleSetGrammarListener},
@@ -120,10 +121,11 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	 * @return
 	 */
 	private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
+		//print(nc.getText());
 		Note note = new Note();
         Alteration alt = getAlterationFromSymbol();
-        double rythm = getRythmFromSymbol();
-        int oct = getOctaveFromSymbol();
+        double rythm = getRythmFromSymbol(nc);
+        int oct = getOctaveFromSymbol(nc);
 
 		note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
 		note.setAlteration(alt);
@@ -136,11 +138,44 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
         return Alteration.FLAT;
     }
 
-    private double getRythmFromSymbol() {
-        return -1;
+    private int getOctaveFromSymbol(RuleSetGrammarParser.NoteContext nc) {
+		if (nc.DIGIT() == null) return 0;
+		return Integer.valueOf(nc.DIGIT().toString());
     }
 
-    private int getOctaveFromSymbol() {
-        return -1;
+    private double getRythmFromSymbol(RuleSetGrammarParser.NoteContext nc) {
+		String d = "";
+		int start = 0,
+				end = nc.getChildCount()-1 /* on parle d'index */ ;
+		if (nc.getChild(end).toString().equals(" ")) {
+			end--;
+		}
+
+		if (nc.SYMBOL() != null) {
+			start++;
+		}
+		if (nc.DIGIT() != null) {
+			start++;
+		}
+
+		int size = end - start -1;
+		print("il y a " + size + " + ou -");
+		boolean isSemi = (nc.getChild(end).toString().equals("."));
+        size = (size > 0 ? size : 0);
+        // if isPlus, it's '+', if isPlus is false, then it's '-' character
+        boolean isPlus = true;
+        if (size > 0) isPlus = (nc.getChild(start+1).toString().equals("+"));
+        print(start);
+		double res = (isSemi ? 1.5 : 1);
+        if (isPlus) {
+			res *= (Math.pow(2, size));
+		} else {
+			res /= (Math.pow(2, size));
+		}
+		return res;
+    }
+
+    private void print(Object s) {
+        //System.out.println(s);
     }
 }

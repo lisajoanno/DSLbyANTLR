@@ -8,10 +8,10 @@ if [ $input_variable = "y" ]
 then
     echo "Ok let's do this."
     echo "Processing..."
-    mvn -q clean package
+    mvn -q clean package -DskipTests
     sh copy.sh
     mvn -q clean package
-    mvn -q exec:java
+    mvn exec:java
 else
     echo "Ok."
 fi

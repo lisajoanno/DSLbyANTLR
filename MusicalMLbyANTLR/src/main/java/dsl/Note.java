@@ -63,6 +63,6 @@ public class Note extends ScoreItem {
 
     @Override
     public String toString() {
-        return "(" + alteration + ", " + noteName.getNoteName() + ")";
+        return "(name : " + noteName.getNoteName() + ", octave : " + octave + ", alt : " + alteration + ", rythm : "+ rythm + ")";
     }
 }
