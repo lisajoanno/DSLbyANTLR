@@ -7,7 +7,6 @@ import dsl.Musical;
 import dsl.Note;
 import dsl.enums.Alteration;
 import dsl.enums.Color;
-import dsl.enums.NoteDuration;
 import dsl.enums.NoteName;
 import dsl.exceptions.ColorDoesntExistException;
 import dsl.exceptions.MacroDoesntExistException;
@@ -18,7 +17,6 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * This class provides an empty implementation of {@link RuleSetGrammarListener},
@@ -38,6 +36,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	public void enterInit(@NotNull RuleSetGrammarParser.InitContext ctx) {
 
 		try {
+			if (ctx.COLOR() == null) throw new ColorDoesntExistException();
 			musical.setColor(Color.getTheColor(ctx.COLOR().getText()));
 		} catch (ColorDoesntExistException c) {
 			//Problem with the color
@@ -123,9 +122,9 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
 		//print(nc.getText());
 		Note note = new Note();
-        Alteration alt = getAlterationFromSymbol();
-        double rythm = getRythmFromSymbol(nc);
-        int oct = getOctaveFromSymbol(nc);
+        Alteration alt = getAlterationFromNoteContext(nc);
+        double rythm = getRythmFromNoteContext(nc);
+        int oct = getOctaveFromNoteContext(nc);
 
 		note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
 		note.setAlteration(alt);
@@ -134,16 +133,21 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		return note;
 	}
 
-	private Alteration getAlterationFromSymbol() {
-        return Alteration.FLAT;
+	private Alteration getAlterationFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
+		Alteration a = Alteration.NATURAL;
+		if (nc.SYMBOL() != null) {
+			if (nc.SYMBOL().getText().equals("#")) a = Alteration.SHARP;
+			else a = Alteration.FLAT;
+		}
+        return a;
     }
 
-    private int getOctaveFromSymbol(RuleSetGrammarParser.NoteContext nc) {
+    private int getOctaveFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
 		if (nc.DIGIT() == null) return 0;
 		return Integer.valueOf(nc.DIGIT().toString());
     }
 
-    private double getRythmFromSymbol(RuleSetGrammarParser.NoteContext nc) {
+    private double getRythmFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
 		String d = "";
 		int start = 0,
 				end = nc.getChildCount()-1 /* on parle d'index */ ;
@@ -159,13 +163,11 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		}
 
 		int size = end - start -1;
-		print("il y a " + size + " + ou -");
 		boolean isSemi = (nc.getChild(end).toString().equals("."));
         size = (size > 0 ? size : 0);
         // if isPlus, it's '+', if isPlus is false, then it's '-' character
         boolean isPlus = true;
         if (size > 0) isPlus = (nc.getChild(start+1).toString().equals("+"));
-        print(start);
 		double res = (isSemi ? 1.5 : 1);
         if (isPlus) {
 			res *= (Math.pow(2, size));
@@ -176,6 +178,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
     }
 
     private void print(Object s) {
-        //System.out.println(s);
+        System.out.println(s);
     }
 }
