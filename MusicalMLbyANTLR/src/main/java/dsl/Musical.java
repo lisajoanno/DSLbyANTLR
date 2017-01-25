@@ -2,6 +2,7 @@ package dsl;
 
 import dsl.enums.Color;
 import dsl.exceptions.MacroDoesntExistException;
+import generation.StateName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,26 +81,17 @@ public class Musical {
 
     @Override
     public String toString() {
-        String res = "Musical \n\n" +
-                "The color used : " + color + "\n" +
-                "The pin of the screen : " + screenPin + "\n" +
-                "The pin of the speaker : " + speakerPin + "\n" +
-                "The BPM : " + bpm + "\n" +
-                "The key : " + key + "\n\n" +
-                "Your macros : \n\n";
+        String res =
+                "actuator led : " + screenPin + "\n" +
+                "speaker spk : " + speakerPin + "\n" +
+                "init: s"+ StateName.currentState+"\n\n";
 
-        for (Macro macro : macros) {
-            res += macro;
-        }
-        res += "\n\n\n\n\n";
-        res += "The main score : \n\n";
-        for (ScoreItem aMainScore : mainScore) {
-            try {
-                //res += mainScore.get(j) + "\n";
-                String macroName = ((MacroName) aMainScore).name;
-                res += getMacroFromMacrosList(macroName);
-            } catch (Exception e) {
-                res += aMainScore + "\n";
+        // soit une note soit une macro
+        for (ScoreItem s : mainScore) {
+            if (s.getClass() == MacroName.class) {
+                // TODO GERER NOTE
+            } else {
+                res += s.toString() + "\n\n";
             }
         }
         return res;

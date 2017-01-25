@@ -1,7 +1,7 @@
 color blue
 speaker 9
 screen 12
-bpm 675
+bpm 60
 key ##
 
 -refrain- { #re3+ re3.

@@ -15,6 +15,11 @@ import grammar.RuleSetGrammarListener;
 import grammar.RuleSetGrammarParser;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +105,16 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	@Override
 	public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
 		if (shouldPrint) {
-			System.err.println(musical);
+			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream("output.txt"), "utf-8"))) {
+				writer.write(musical.toString());
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -173,14 +187,19 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
         size = (size > 0 ? size : 0);
         // if isPlus, it's '+', if isPlus is false, then it's '-' character
         boolean isPlus = true;
+
         if (size > 0) isPlus = (nc.getChild(start+1).toString().equals("+"));
-		double res = (isSemi ? 1.5 : 1);
+
+
+        double res = (isSemi ? 1.5 : 1);
         if (isPlus) {
 			res *= (Math.pow(2, size));
 		} else {
 			res /= (Math.pow(2, size));
 		}
-		return res;
+
+		double whole = 60000/musical.getBpm();
+		return res * whole;
     }
 
     /*private void print(Object s) {
