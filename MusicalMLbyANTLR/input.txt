@@ -16,4 +16,4 @@ re--
 score
 -refrain- #fa3+ fa3. -okok- { ¤mi4++. mi4 ¤mi3. } #fa--
 #fa3+ fa3. ¤fa4++. fa4 ¤fa3. #fa--. -refrain- #fa3+
-fa3. -okok- ¤fa4++. fa4 ¤fa3. #fa--. -ending- #fa6+++.
+fa3. -okok- ¤fa4++. fa4 ¤fa3. #fa--. -ending- #re3+ #fa6+++.

@@ -55,9 +55,8 @@ public class Note extends ScoreItem {
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
         res += "\tled <= HIGH\n";
         res += "\ttone spk <= "+getInHZ()+" hz for "+getInMS()+" ms\n";
-        res += "\twhen " + rythm /* all done  */ +" ms elapsed => s"+StateName.currentState + "\n";
+        res += "\twhen " + rythm +" ms elapsed => s"+StateName.currentState + "\n";
         res += "}";
-        //return "(name : " + noteName.getNoteName() + ", octave : " + octave + ", alt : " + alteration + ", rythm : "+ rythm + ")";
         return res;
     }
 

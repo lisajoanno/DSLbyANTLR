@@ -33,10 +33,9 @@ public class Macro {
 
     @Override
     public String toString() {
-        String res =
-                "Macro name : " + macroName + '\n';
+        String res = "\n\n";
         for (Note n : notes) {
-            res += "\t" + n + "\n";
+            res += n.toString() + "\n\n";
         }
         return res;
     }

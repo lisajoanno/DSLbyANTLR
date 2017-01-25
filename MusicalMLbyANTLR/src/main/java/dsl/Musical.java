@@ -89,11 +89,19 @@ public class Musical {
         // soit une note soit une macro
         for (ScoreItem s : mainScore) {
             if (s.getClass() == MacroName.class) {
-                // TODO GERER NOTE
+                try {
+                    res += getMacroFromMacrosList(((MacroName) s).name) + "\n";
+                } catch (MacroDoesntExistException e) {
+                    e.printStackTrace();
+                }
             } else {
                 res += s.toString() + "\n\n";
             }
         }
+
+        // fin --> on crée l'état final
+        res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
+        res += "}";
         return res;
     }
 
