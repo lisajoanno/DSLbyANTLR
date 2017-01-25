@@ -11,7 +11,7 @@ import java.util.List;
  *
  * Created by lisa on 11/01/17.
  */
-public class Macro extends ScoreItem {
+public class Macro {
     private String macroName;
     private List<Note> notes;
 
@@ -34,7 +34,7 @@ public class Macro extends ScoreItem {
     @Override
     public String toString() {
         String res =
-                "Macro name :" + macroName + '\n';
+                "Macro name : " + macroName + '\n';
         for (Note n : notes) {
             res += "\t" + n + "\n";
         }

@@ -7,6 +7,6 @@ package dsl.exceptions;
  */
 public class MacroDoesntExistException extends Exception {
     public MacroDoesntExistException() {
-        super("A macro is used but never devlared.");
+        super("A macro is used but never declared.");
     }
 }

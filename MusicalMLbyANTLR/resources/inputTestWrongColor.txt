@@ -1,0 +1,14 @@
+color grey
+speaker 9
+screen 12
+
+-refrain- { #do6+++. }
+
+-ending- { #do3+ sol3.
+¤re4++. fa4 ¤mi3
+}
+
+score
+-refrain- #do3+ sol3. ¤re4++. fa4 ¤mi3. #do--
+#do3+ sol3. ¤re4++. fa4 ¤mi3. #do--. -refrain- #do3+
+sol3. ¤re4++. fa4 ¤mi3. #do--. -ending-

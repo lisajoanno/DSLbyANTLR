@@ -1,11 +1,8 @@
 grammar RuleSetGrammar;
 
-SYMBOL : '@' | '*';
+SYMBOL : '¤' | '#';
 
-// On le place ici pour que ' ' soit d'abord matché avec ça
-NOTE : (NOTE_NAME ' '?) ;
-
-WHITESPACE : ( '\t' | '\r' | ' ' | '\n'| '\u000C' )+ -> skip ;
+NOTE : (NOTE_NAME) ;
 
 dsl : init macro_def* 'score' score ;
 
@@ -15,14 +12,16 @@ NOTE_NAME : 'do' | 're' | 'mi' | 'fa' | 'sol' | 'la' | 'si' ;
 
 TEXT : LETTER+ ;
 
+DIGIT : ('1'..'9')+ ;
+
+init : 'color ' COLOR 'speaker ' DIGIT 'screen ' DIGIT ;
+
+macro_def : '-' TEXT '- ' '{' ' '? note+ '}' ' '?;
+
+note : SYMBOL? NOTE DIGIT? ('+' | '-')* '.'? ' '? ;
+
 LETTER : ('a'..'z' | 'A'..'Z')+ ;
 
-PIN : ('1'..'9')+ ;
+score : (note | '-' TEXT ('-' | '- ') | macro_def)+;
 
-init : 'color ' COLOR 'buzzer ' PIN 'screen ' PIN ;
-
-macro_def : '-' TEXT '- ' '{' note+ '}' ;
-
-note : SYMBOL? NOTE ;
-
-score : (note | '-' TEXT ('-' | '- '))+;
+WHITESPACE : ( '\t' | '\r' | '\n'| '\u000C' )+ -> skip ;

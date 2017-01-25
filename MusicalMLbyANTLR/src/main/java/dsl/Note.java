@@ -1,6 +1,6 @@
 package dsl;
 
-import dsl.enums.NoteDuration;
+import dsl.enums.Alteration;
 import dsl.enums.NoteName;
 
 /**
@@ -9,35 +9,43 @@ import dsl.enums.NoteName;
  * Created by lisa on 11/01/17.
  */
 public class Note extends ScoreItem {
-    private NoteDuration duration;
     private NoteName noteName;
+    private Alteration alteration;
+    private int octave;
+    private double rythm;
 
     public Note() {
     }
 
-    public Note(NoteDuration duration, NoteName noteName) {
-        this.duration = duration;
+    public Note(NoteName noteName, Alteration alteration, int octave, double rythm) {
         this.noteName = noteName;
+        this.alteration = alteration;
+        this.octave = octave;
+        this.rythm = rythm;
     }
 
-    public NoteDuration getDuration() {
-        return duration;
-    }
 
-    public void setDuration(NoteDuration duration) {
-        this.duration = duration;
-    }
 
-    public NoteName getNoteName() {
-        return noteName;
-    }
 
     public void setNoteName(NoteName noteName) {
         this.noteName = noteName;
     }
 
+    public void setAlteration(Alteration alteration) {
+        this.alteration = alteration;
+    }
+
+    public void setOctave(int octave) {
+        this.octave = octave;
+    }
+
+    public void setRythm(double rythm) {
+        this.rythm = rythm;
+    }
+
+
     @Override
     public String toString() {
-        return "(" + duration.toString() + ", " + noteName.getNoteName() + ")";
+        return "(name : " + noteName.getNoteName() + ", octave : " + octave + ", alt : " + alteration + ", rythm : "+ rythm + ")";
     }
 }

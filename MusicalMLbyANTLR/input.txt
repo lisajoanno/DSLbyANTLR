@@ -1,24 +1,17 @@
 color blue
-buzzer 9
+speaker 9
 screen 12
 
--refrain- { do @re
-*mi
-fa sol *sol
+-refrain- { #re3+ re3.
+¤re4++. re4 ¤re3. #re--
+re--
 }
 
--oif- {
-do
-re do
+-ending- { #do3+ do3.
+¤do4++. do4 ¤do3
 }
 
 score
-*do
-re
-@mi -oif- -refrain- mi
-@fa -refrain- *sol
-la
--refrain- *do
-*do
-*re
-mi
+-refrain- #fa3+ fa3. -okok- { ¤mi4++. mi4 ¤mi3. } #fa--
+#fa3+ fa3. ¤fa4++. fa4 ¤fa3. #fa--. -refrain- #fa3+
+fa3. -okok- ¤fa4++. fa4 ¤fa3. #fa--. -ending- #fa6+++.
