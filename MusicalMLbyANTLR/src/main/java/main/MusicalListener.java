@@ -28,7 +28,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	Musical musical = new Musical();
 
 	private boolean shouldPrint = false;
-	public MusicalListener(boolean shouldPrint) {
+	MusicalListener(boolean shouldPrint) {
 		this.shouldPrint = shouldPrint;
 	}
 
@@ -67,7 +67,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			try {
 				RuleSetGrammarParser.NoteContext nc = (RuleSetGrammarParser.NoteContext) (ctx.getChild(i));
 				musical.getMainScore().add(getNoteFromNoteContext(nc));
-				continue;
 			} catch (ClassCastException e) {
 				try {
 					RuleSetGrammarParser.Macro_defContext nc = (RuleSetGrammarParser.Macro_defContext) (ctx.getChild(i));
@@ -91,21 +90,10 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
 	}
 
-	/**
-	 *
-	 * @param ctx
-	 */
-	@Override
-	public void enterDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
-		//TODO faire tout les def macro en premier
-
-	}
-
 
 	/**
 	 * When the DSL is over, prints the Musical object created.
 	 *
-	 * @param ctx
 	 */
 	@Override
 	public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
@@ -137,11 +125,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
 	/****************************** utils ******************************/
 
-	/**
-	 * //TODO doc
-	 * @param nc
-	 * @return
-	 */
 	private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
 		Note note = new Note();
         Alteration alt = getAlterationFromNoteContext(nc);
@@ -170,7 +153,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
     }
 
     private double getRythmFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
-		String d = "";
 		int start = 0,
 				end = nc.getChildCount()-1 /* on parle d'index */ ;
 		if (nc.getChild(end).toString().equals(" ")) {
@@ -199,9 +181,9 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		return res;
     }
 
-    private void print(Object s) {
+    /*private void print(Object s) {
 		if (shouldPrint) {
 			System.out.println(s);
 		}
-    }
+    }*/
 }

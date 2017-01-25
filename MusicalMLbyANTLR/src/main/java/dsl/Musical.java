@@ -58,19 +58,11 @@ public class Musical {
         return macros;
     }
 
-    public void setMacros(List<Macro> macros) {
-        this.macros = macros;
-    }
-
     public List<ScoreItem> getMainScore() {
         return mainScore;
     }
 
-    public void setMainScore(List<ScoreItem> mainScore) {
-        this.mainScore = mainScore;
-    }
-
-    public Macro getMacroFromMacrosList(String macroName) throws MacroDoesntExistException {
+    private Macro getMacroFromMacrosList(String macroName) throws MacroDoesntExistException {
         for (Macro m : this.macros) {
             if (m.getMacroName().equals(macroName)) return m;
         }
@@ -85,18 +77,18 @@ public class Musical {
                 "The pin of the speaker : " + speakerPin + "\n\n" +
                 "Your macros : \n\n";
 
-                for (int i = 0; i<macros.size(); i++) {
-                    res += macros.get(i);
-                }
+        for (Macro macro : macros) {
+            res += macro;
+        }
         res += "\n\n\n\n\n";
         res += "The main score : \n\n";
-        for (int j = 0; j<mainScore.size(); j++) {
+        for (ScoreItem aMainScore : mainScore) {
             try {
                 //res += mainScore.get(j) + "\n";
-                String macroName = ((MacroName) mainScore.get(j)).name;
+                String macroName = ((MacroName) aMainScore).name;
                 res += getMacroFromMacrosList(macroName);
             } catch (Exception e) {
-                res += mainScore.get(j) + "\n";
+                res += aMainScore + "\n";
             }
         }
         return res;

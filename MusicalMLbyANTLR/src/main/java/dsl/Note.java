@@ -1,7 +1,6 @@
 package dsl;
 
 import dsl.enums.Alteration;
-import dsl.enums.NoteDuration;
 import dsl.enums.NoteName;
 
 /**
@@ -28,32 +27,16 @@ public class Note extends ScoreItem {
 
 
 
-    public NoteName getNoteName() {
-        return noteName;
-    }
-
     public void setNoteName(NoteName noteName) {
         this.noteName = noteName;
-    }
-
-    public Alteration getAlteration() {
-        return alteration;
     }
 
     public void setAlteration(Alteration alteration) {
         this.alteration = alteration;
     }
 
-    public int getOctave() {
-        return octave;
-    }
-
     public void setOctave(int octave) {
         this.octave = octave;
-    }
-
-    public double getRythm() {
-        return rythm;
     }
 
     public void setRythm(double rythm) {

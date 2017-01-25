@@ -11,7 +11,7 @@ import java.util.List;
  *
  * Created by lisa on 11/01/17.
  */
-public class Macro /**extends ScoreItem**/ {
+public class Macro {
     private String macroName;
     private List<Note> notes;
 

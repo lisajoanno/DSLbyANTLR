@@ -14,10 +14,6 @@ public enum NoteName {
         return noteName;
     }
 
-    public void setNoteName(String noteName) {
-        this.noteName = noteName;
-    }
-
     NoteName(String s) {
         this.noteName = s;
     }
