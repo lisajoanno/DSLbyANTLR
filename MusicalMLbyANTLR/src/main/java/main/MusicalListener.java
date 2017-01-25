@@ -3,13 +3,13 @@ package main;
 // Generated from RuleSetGrammar.g4 by ANTLR 4.3
 
 import dsl.Macro;
+import dsl.MacroName;
 import dsl.Musical;
 import dsl.Note;
 import dsl.enums.Alteration;
 import dsl.enums.Color;
 import dsl.enums.NoteName;
 import dsl.exceptions.ColorDoesntExistException;
-import dsl.exceptions.MacroDoesntExistException;
 import grammar.RuleSetGrammarBaseListener;
 import grammar.RuleSetGrammarListener;
 import grammar.RuleSetGrammarParser;
@@ -26,6 +26,12 @@ import java.util.List;
 public class MusicalListener extends RuleSetGrammarBaseListener {
 
 	Musical musical = new Musical();
+
+	private boolean shouldPrint = false;
+	public MusicalListener(boolean shouldPrint) {
+		this.shouldPrint = shouldPrint;
+	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -45,7 +51,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			musical.setColor(Color.BLUE);
 		}
 
-		musical.setBuzzerPin(Integer.parseInt(ctx.DIGIT(0).toString()));
+		musical.setSpeakerPin(Integer.parseInt(ctx.DIGIT(0).toString()));
 		musical.setScreenPin(Integer.parseInt(ctx.DIGIT(1).toString()));
 	}
 
@@ -65,14 +71,16 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			} catch (ClassCastException e) {
 				try {
 					RuleSetGrammarParser.Macro_defContext nc = (RuleSetGrammarParser.Macro_defContext) (ctx.getChild(i));
-					musical.getMainScore().add(musical.getMacroFromMacrosList(nc.TEXT().toString()));
+					MacroName nameOfMacro = new MacroName(nc.TEXT().toString()) ;
+					musical.getMainScore().add(nameOfMacro);
 				} catch (Exception exc) {
 					//The cast did not succeed -> it's not a note ! so it must be a macro
 					String macroName = (ctx.getChild(i).getText().trim());
 					if (!macroName.equals("-")) {
 						try {
-							musical.getMainScore().add(musical.getMacroFromMacrosList(macroName));
-						} catch (MacroDoesntExistException m) {
+							MacroName nameOfMacro = new MacroName(macroName) ;
+							musical.getMainScore().add(nameOfMacro);
+						} catch (Exception m) {
 							//The macro used did not exist
 							System.err.println("You tried to use a macro you did not define : ignored.");
 						}
@@ -101,7 +109,9 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	 */
 	@Override
 	public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
-		System.err.println(musical);
+		if (shouldPrint) {
+			System.err.println(musical);
+		}
 	}
 
 
@@ -123,7 +133,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
 		musical.getMacros().add(macro);
 	}
-
 
 
 	/****************************** utils ******************************/
@@ -191,6 +200,8 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
     }
 
     private void print(Object s) {
-        System.out.println(s);
+		if (shouldPrint) {
+			System.out.println(s);
+		}
     }
 }

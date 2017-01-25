@@ -19,7 +19,7 @@ public class Musical {
     // the pin where the screen will be plugged
     private int screenPin;
     // the pin where the buzzer will be plugged
-    private int buzzerPin;
+    private int speakerPin;
 
     private List<Macro> macros;
     // ScoreItem -> notes, of a macro name, to be replaced by its notes
@@ -46,12 +46,12 @@ public class Musical {
         this.screenPin = screenPin;
     }
 
-    public int getBuzzerPin() {
-        return buzzerPin;
+    public int getSpeakerPin() {
+        return speakerPin;
     }
 
-    public void setBuzzerPin(int buzzerPin) {
-        this.buzzerPin = buzzerPin;
+    public void setSpeakerPin(int speakerPin) {
+        this.speakerPin = speakerPin;
     }
 
     public List<Macro> getMacros() {
@@ -82,7 +82,7 @@ public class Musical {
         String res = "Musical \n\n" +
                 "The color used : " + color + "\n" +
                 "The pin of the screen : " + screenPin + "\n" +
-                "The pin of the speaker : " + buzzerPin + "\n\n" +
+                "The pin of the speaker : " + speakerPin + "\n\n" +
                 "Your macros : \n\n";
 
                 for (int i = 0; i<macros.size(); i++) {
@@ -91,7 +91,13 @@ public class Musical {
         res += "\n\n\n\n\n";
         res += "The main score : \n\n";
         for (int j = 0; j<mainScore.size(); j++) {
-            res += mainScore.get(j) + "\n";
+            try {
+                //res += mainScore.get(j) + "\n";
+                String macroName = ((MacroName) mainScore.get(j)).name;
+                res += getMacroFromMacrosList(macroName);
+            } catch (Exception e) {
+                res += mainScore.get(j) + "\n";
+            }
         }
         return res;
     }

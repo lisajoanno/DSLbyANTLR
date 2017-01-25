@@ -22,10 +22,10 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String [] args) {
         String fileName = "input.txt";
-        runListener(fileName);
+        runListener(fileName, true);
     }
 
-    public static MusicalListener runListener(String fileName) {
+    public static MusicalListener runListener(String fileName, boolean shouldPrint) {
         try {
             String query = new String(Files.readAllBytes(Paths.get(fileName)));
             ANTLRInputStream input = new ANTLRInputStream(query);
@@ -33,7 +33,7 @@ public class Main {
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             RuleSetGrammarParser parser = new RuleSetGrammarParser(tokens);
             RuleSetGrammarParser.DslContext tree = parser.dsl();
-            MusicalListener musical = new MusicalListener();
+            MusicalListener musical = new MusicalListener(shouldPrint);
             ParseTreeWalker.DEFAULT.walk(musical, tree);
             return musical;
         } catch (Exception e) {
