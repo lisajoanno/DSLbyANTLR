@@ -90,12 +90,12 @@ public class Musical {
         for (ScoreItem s : mainScore) {
             if (s.getClass() == MacroName.class) {
                 try {
-                    res += getMacroFromMacrosList(((MacroName) s).name) + "\n";
+                    res += "\n\n" + getMacroFromMacrosList(((MacroName) s).name) + "\n\n";
                 } catch (MacroDoesntExistException e) {
                     e.printStackTrace();
                 }
             } else {
-                res += s.toString() + "\n\n";
+                res += s.toString() + "";
             }
         }
 

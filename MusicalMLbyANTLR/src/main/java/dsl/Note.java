@@ -56,7 +56,7 @@ public class Note extends ScoreItem {
         res += "\tled <= HIGH\n";
         res += "\ttone spk <= "+getInHZ()+" hz for "+getInMS()+" ms\n";
         res += "\twhen " + rythm +" ms elapsed => s"+StateName.currentState + "\n";
-        res += "}";
+        res += "}\n\n";
         return res;
     }
 
