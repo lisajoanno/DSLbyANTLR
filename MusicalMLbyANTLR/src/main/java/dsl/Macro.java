@@ -34,7 +34,7 @@ public class Macro extends ScoreItem {
     @Override
     public String toString() {
         String res =
-                "Macro name :" + macroName + '\n';
+                "Macro name : " + macroName + '\n';
         for (Note n : notes) {
             res += "\t" + n + "\n";
         }

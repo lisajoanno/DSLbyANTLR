@@ -29,7 +29,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * <p>
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override
@@ -50,29 +50,32 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	}
 
 
-
-
 	/**
 	 * {@inheritDoc}
-	 *
+	 * <p>
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override
 	public void enterScore(@NotNull RuleSetGrammarParser.ScoreContext ctx) {
-		for (int i = 0 ; i < ctx.getChildCount() ; i++) {
+		for (int i = 0; i < ctx.getChildCount(); i++) {
 			try {
 				RuleSetGrammarParser.NoteContext nc = (RuleSetGrammarParser.NoteContext) (ctx.getChild(i));
 				musical.getMainScore().add(getNoteFromNoteContext(nc));
 				continue;
 			} catch (ClassCastException e) {
-				//The cast did not succeed -> it's not a note ! so it must be a macro
-				String macroName = (ctx.getChild(i).getText().trim());
-				if (!macroName.equals("-")) {
-					try {
-						musical.getMainScore().add(musical.getMacroFromMacrosList(macroName));
-					} catch (MacroDoesntExistException m) {
-						//The macro used did not exist
-						System.err.println("You tried to use a macro you did not define : ignored.");
+				try {
+					RuleSetGrammarParser.Macro_defContext nc = (RuleSetGrammarParser.Macro_defContext) (ctx.getChild(i));
+					musical.getMainScore().add(musical.getMacroFromMacrosList(nc.TEXT().toString()));
+				} catch (Exception exc) {
+					//The cast did not succeed -> it's not a note ! so it must be a macro
+					String macroName = (ctx.getChild(i).getText().trim());
+					if (!macroName.equals("-")) {
+						try {
+							musical.getMainScore().add(musical.getMacroFromMacrosList(macroName));
+						} catch (MacroDoesntExistException m) {
+							//The macro used did not exist
+							System.err.println("You tried to use a macro you did not define : ignored.");
+						}
 					}
 				}
 			}
@@ -80,14 +83,25 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
 	}
 
+	/**
+	 *
+	 * @param ctx
+	 */
+	@Override
+	public void enterDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
+		//TODO faire tout les def macro en premier
 
-    /**
-     * When the DSL is over, prints the Musical object created.
-     * @param ctx
-     */
+	}
+
+
+	/**
+	 * When the DSL is over, prints the Musical object created.
+	 *
+	 * @param ctx
+	 */
 	@Override
 	public void exitDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
-		//System.err.println(musical);
+		System.err.println(musical);
 	}
 
 
@@ -120,7 +134,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	 * @return
 	 */
 	private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
-		//print(nc.getText());
 		Note note = new Note();
         Alteration alt = getAlterationFromNoteContext(nc);
         double rythm = getRythmFromNoteContext(nc);

@@ -14,14 +14,14 @@ TEXT : LETTER+ ;
 
 DIGIT : ('1'..'9')+ ;
 
-init : 'color ' COLOR 'buzzer ' DIGIT 'screen ' DIGIT ;
+init : 'color ' COLOR 'speaker ' DIGIT 'screen ' DIGIT ;
 
-macro_def : '-' TEXT '- ' '{' ' '? note+ '}' ;
+macro_def : '-' TEXT '- ' '{' ' '? note+ '}' ' '?;
 
 note : SYMBOL? NOTE DIGIT? ('+' | '-')* '.'? ' '? ;
 
 LETTER : ('a'..'z' | 'A'..'Z')+ ;
 
-score : (note | '-' TEXT ('-' | '- '))+;
+score : (note | '-' TEXT ('-' | '- ') | macro_def)+;
 
 WHITESPACE : ( '\t' | '\r' | '\n'| '\u000C' )+ -> skip ;

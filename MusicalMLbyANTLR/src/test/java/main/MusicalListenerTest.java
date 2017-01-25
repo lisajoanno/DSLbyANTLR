@@ -21,6 +21,7 @@ import org.junit.Rule;
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class MusicalListenerTest {
 
     @Test
     public void testDSLOK() throws Exception {
-        MusicalListener musicalListenerOK = initTests("resources/inputTest.txt");
+        MusicalListener musicalListenerOK = (new Main()).runListener("resources/inputTest.txt");
         assertEquals(musicalListenerOK.musical.getColor(), Color.BLUE);
         assertEquals(musicalListenerOK.musical.getBuzzerPin(), 9);
         assertEquals(musicalListenerOK.musical.getScreenPin(), 12);
@@ -51,7 +52,7 @@ public class MusicalListenerTest {
 
     @Test
     public void testMacroDoesntExist() throws Exception {
-        MusicalListener musicalListener = initTests("resources/inputTestMacroDoesntExist.txt");
+        MusicalListener musicalListener = (new Main()).runListener("resources/inputTestMacroDoesntExist.txt");
         boolean macroExists = false;
         for (ScoreItem s : musicalListener.musical.getMacros()) {
             try {
@@ -66,25 +67,15 @@ public class MusicalListenerTest {
 
     @Test
     public void testColorDoesntExist() throws Exception {
-        MusicalListener musicalListener = initTests("resources/inputTestWrongColor.txt");
+        MusicalListener musicalListener = (new Main()).runListener("resources/inputTestWrongColor.txt");
         assertEquals(musicalListener.musical.getColor(), Color.BLUE);
     }
 
 
-    public MusicalListener initTests(String fileName) {
-        try {
-            String query = new String(Files.readAllBytes(Paths.get(fileName)));
-            ANTLRInputStream input = new ANTLRInputStream(query);
-            RuleSetGrammarLexer lexer = new RuleSetGrammarLexer(input);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            RuleSetGrammarParser parser = new RuleSetGrammarParser(tokens);
-            RuleSetGrammarParser.DslContext tree = parser.dsl();
-            MusicalListener musical = new MusicalListener();
-            ParseTreeWalker.DEFAULT.walk(musical, tree);
-            return musical;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    @Test/*(expected = java.nio.file.NoSuchFileException.class)*/
+    public void testFileDoesntExist() throws Exception {
+        //MusicalListener musicalListener = (new Main()).runListener("resources/no.txt");
+        //assertNull(musicalListener);
     }
+
 }

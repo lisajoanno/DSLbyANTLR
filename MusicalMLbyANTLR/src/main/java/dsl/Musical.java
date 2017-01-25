@@ -82,7 +82,7 @@ public class Musical {
         String res = "Musical \n\n" +
                 "The color used : " + color + "\n" +
                 "The pin of the screen : " + screenPin + "\n" +
-                "The pin of the buzzer : " + buzzerPin + "\n\n" +
+                "The pin of the speaker : " + buzzerPin + "\n\n" +
                 "Your macros : \n\n";
 
                 for (int i = 0; i<macros.size(); i++) {

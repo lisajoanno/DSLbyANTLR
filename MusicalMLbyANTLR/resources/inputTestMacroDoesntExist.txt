@@ -1,5 +1,5 @@
 color red
-buzzer 9
+speaker 9
 screen 12
 
 -refrain- { #do6+++. }
