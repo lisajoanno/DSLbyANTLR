@@ -18,11 +18,11 @@ public class RuleSetGrammarParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__12=1, T__11=2, T__10=3, T__9=4, T__8=5, T__7=6, T__6=7, T__5=8, T__4=9, 
-		T__3=10, T__2=11, T__1=12, T__0=13, SYMBOL=14, SYMBOL2=15, NOTE=16, COLOR=17, 
-		NOTE_NAME=18, TEXT=19, DIGIT=20, LETTER=21, WHITESPACE=22;
+		T__3=10, T__2=11, T__1=12, T__0=13, SYMBOL=14, SYMBOL_REPEAT=15, NOTE=16, 
+		COLOR=17, NOTE_NAME=18, TEXT=19, DIGIT=20, LETTER=21, WHITESPACE=22;
 	public static final String[] tokenNames = {
 		"<INVALID>", "'- '", "'key '", "'speaker '", "'screen '", "'bpm '", "'{'", 
-		"'}'", "' '", "'score'", "'color '", "'+'", "'-'", "'.'", "SYMBOL", "SYMBOL2", 
+		"'}'", "' '", "'score'", "'color '", "'+'", "'-'", "'.'", "SYMBOL", "SYMBOL_REPEAT", 
 		"NOTE", "COLOR", "NOTE_NAME", "TEXT", "DIGIT", "LETTER", "WHITESPACE"
 	};
 	public static final int
@@ -115,11 +115,11 @@ public class RuleSetGrammarParser extends Parser {
 
 	public static class InitContext extends ParserRuleContext {
 		public TerminalNode COLOR() { return getToken(RuleSetGrammarParser.COLOR, 0); }
+		public TerminalNode SYMBOL_REPEAT() { return getToken(RuleSetGrammarParser.SYMBOL_REPEAT, 0); }
 		public TerminalNode DIGIT(int i) {
 			return getToken(RuleSetGrammarParser.DIGIT, i);
 		}
 		public List<TerminalNode> DIGIT() { return getTokens(RuleSetGrammarParser.DIGIT); }
-		public TerminalNode SYMBOL2() { return getToken(RuleSetGrammarParser.SYMBOL2, 0); }
 		public InitContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -149,7 +149,7 @@ public class RuleSetGrammarParser extends Parser {
 			setState(26); match(T__8);
 			setState(27); match(DIGIT);
 			setState(28); match(T__11);
-			setState(29); match(SYMBOL2);
+			setState(29); match(SYMBOL_REPEAT);
 			}
 		}
 		catch (RecognitionException re) {

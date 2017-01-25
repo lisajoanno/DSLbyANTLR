@@ -59,7 +59,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		musical.setSpeakerPin(Integer.parseInt(ctx.DIGIT(0).toString()));
 		musical.setScreenPin(Integer.parseInt(ctx.DIGIT(1).toString()));
 		musical.setBpm(Integer.parseInt(ctx.DIGIT(2).toString()));
-		musical.setKey(ctx.SYMBOL2().toString());
+		musical.setKey(ctx.SYMBOL_REPEAT().toString());
 	}
 
 
@@ -108,10 +108,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 					new FileOutputStream("output.txt"), "utf-8"))) {
 				writer.write(musical.toString());
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

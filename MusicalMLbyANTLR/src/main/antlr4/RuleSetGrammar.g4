@@ -1,7 +1,7 @@
 grammar RuleSetGrammar;
 
 SYMBOL : '¤' | '#';
-SYMBOL2 : '¤'* | '#'*;
+SYMBOL_REPEAT : '¤'* | '#'*;
 
 NOTE : (NOTE_NAME) ;
 
@@ -15,7 +15,7 @@ TEXT : LETTER+ ;
 
 DIGIT : ('0'..'9')+ ;
 
-init : 'color ' COLOR 'speaker ' DIGIT 'screen ' DIGIT 'bpm ' DIGIT 'key ' SYMBOL2 ;
+init : 'color ' COLOR 'speaker ' DIGIT 'screen ' DIGIT 'bpm ' DIGIT 'key ' SYMBOL_REPEAT ;
 
 macro_def : '-' TEXT '- ' '{' ' '? note+ '}' ' '? ;
 

@@ -18,8 +18,8 @@ public class RuleSetGrammarLexer extends Lexer {
 		new PredictionContextCache();
 	public static final int
 		T__12=1, T__11=2, T__10=3, T__9=4, T__8=5, T__7=6, T__6=7, T__5=8, T__4=9, 
-		T__3=10, T__2=11, T__1=12, T__0=13, SYMBOL=14, SYMBOL2=15, NOTE=16, COLOR=17, 
-		NOTE_NAME=18, TEXT=19, DIGIT=20, LETTER=21, WHITESPACE=22;
+		T__3=10, T__2=11, T__1=12, T__0=13, SYMBOL=14, SYMBOL_REPEAT=15, NOTE=16, 
+		COLOR=17, NOTE_NAME=18, TEXT=19, DIGIT=20, LETTER=21, WHITESPACE=22;
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
@@ -32,7 +32,7 @@ public class RuleSetGrammarLexer extends Lexer {
 	};
 	public static final String[] ruleNames = {
 		"T__12", "T__11", "T__10", "T__9", "T__8", "T__7", "T__6", "T__5", "T__4", 
-		"T__3", "T__2", "T__1", "T__0", "SYMBOL", "SYMBOL2", "NOTE", "COLOR", 
+		"T__3", "T__2", "T__1", "T__0", "SYMBOL", "SYMBOL_REPEAT", "NOTE", "COLOR", 
 		"NOTE_NAME", "TEXT", "DIGIT", "LETTER", "WHITESPACE"
 	};
 
