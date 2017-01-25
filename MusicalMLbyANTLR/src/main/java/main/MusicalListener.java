@@ -53,6 +53,8 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
 		musical.setSpeakerPin(Integer.parseInt(ctx.DIGIT(0).toString()));
 		musical.setScreenPin(Integer.parseInt(ctx.DIGIT(1).toString()));
+		musical.setBpm(Integer.parseInt(ctx.DIGIT(2).toString()));
+		musical.setKey(ctx.SYMBOL2().toString());
 	}
 
 

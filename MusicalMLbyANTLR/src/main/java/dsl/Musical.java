@@ -20,6 +20,15 @@ public class Musical {
     private int screenPin;
     // the pin where the buzzer will be plugged
     private int speakerPin;
+    // the beat!
+    private int bpm;
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    private String key;
+
 
     private List<Macro> macros;
     // ScoreItem -> notes, of a macro name, to be replaced by its notes
@@ -74,7 +83,9 @@ public class Musical {
         String res = "Musical \n\n" +
                 "The color used : " + color + "\n" +
                 "The pin of the screen : " + screenPin + "\n" +
-                "The pin of the speaker : " + speakerPin + "\n\n" +
+                "The pin of the speaker : " + speakerPin + "\n" +
+                "The BPM : " + bpm + "\n" +
+                "The key : " + key + "\n\n" +
                 "Your macros : \n\n";
 
         for (Macro macro : macros) {
@@ -92,5 +103,13 @@ public class Musical {
             }
         }
         return res;
+    }
+
+    public int getBpm() {
+        return bpm;
+    }
+
+    public void setBpm(int bpm) {
+        this.bpm = bpm;
     }
 }

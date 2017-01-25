@@ -17,13 +17,13 @@ public class RuleSetGrammarParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__10=1, T__9=2, T__8=3, T__7=4, T__6=5, T__5=6, T__4=7, T__3=8, T__2=9, 
-		T__1=10, T__0=11, SYMBOL=12, NOTE=13, COLOR=14, NOTE_NAME=15, TEXT=16, 
-		DIGIT=17, LETTER=18, WHITESPACE=19;
+		T__12=1, T__11=2, T__10=3, T__9=4, T__8=5, T__7=6, T__6=7, T__5=8, T__4=9, 
+		T__3=10, T__2=11, T__1=12, T__0=13, SYMBOL=14, SYMBOL2=15, NOTE=16, COLOR=17, 
+		NOTE_NAME=18, TEXT=19, DIGIT=20, LETTER=21, WHITESPACE=22;
 	public static final String[] tokenNames = {
-		"<INVALID>", "'- '", "'speaker '", "' '", "'screen '", "'score'", "'color '", 
-		"'+'", "'{'", "'}'", "'-'", "'.'", "SYMBOL", "NOTE", "COLOR", "NOTE_NAME", 
-		"TEXT", "DIGIT", "LETTER", "WHITESPACE"
+		"<INVALID>", "'- '", "'key '", "'speaker '", "'screen '", "'bpm '", "'{'", 
+		"'}'", "' '", "'score'", "'color '", "'+'", "'-'", "'.'", "SYMBOL", "SYMBOL2", 
+		"NOTE", "COLOR", "NOTE_NAME", "TEXT", "DIGIT", "LETTER", "WHITESPACE"
 	};
 	public static final int
 		RULE_dsl = 0, RULE_init = 1, RULE_macro_def = 2, RULE_note = 3, RULE_score = 4;
@@ -98,7 +98,7 @@ public class RuleSetGrammarParser extends Parser {
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(17); match(T__6);
+			setState(17); match(T__4);
 			setState(18); score();
 			}
 		}
@@ -119,6 +119,7 @@ public class RuleSetGrammarParser extends Parser {
 			return getToken(RuleSetGrammarParser.DIGIT, i);
 		}
 		public List<TerminalNode> DIGIT() { return getTokens(RuleSetGrammarParser.DIGIT); }
+		public TerminalNode SYMBOL2() { return getToken(RuleSetGrammarParser.SYMBOL2, 0); }
 		public InitContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -139,12 +140,16 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20); match(T__5);
+			setState(20); match(T__3);
 			setState(21); match(COLOR);
-			setState(22); match(T__9);
+			setState(22); match(T__10);
 			setState(23); match(DIGIT);
-			setState(24); match(T__7);
+			setState(24); match(T__9);
 			setState(25); match(DIGIT);
+			setState(26); match(T__8);
+			setState(27); match(DIGIT);
+			setState(28); match(T__11);
+			setState(29); match(SYMBOL2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -187,37 +192,37 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(27); match(T__1);
-			setState(28); match(TEXT);
-			setState(29); match(T__10);
-			setState(30); match(T__3);
-			setState(32);
+			setState(31); match(T__1);
+			setState(32); match(TEXT);
+			setState(33); match(T__12);
+			setState(34); match(T__7);
+			setState(36);
 			_la = _input.LA(1);
-			if (_la==T__8) {
+			if (_la==T__5) {
 				{
-				setState(31); match(T__8);
+				setState(35); match(T__5);
 				}
 			}
 
-			setState(35); 
+			setState(39); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(34); note();
+				setState(38); note();
 				}
 				}
-				setState(37); 
+				setState(41); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==SYMBOL || _la==NOTE );
-			setState(39); match(T__2);
-			setState(41);
+			setState(43); match(T__6);
+			setState(45);
 			_la = _input.LA(1);
-			if (_la==T__8) {
+			if (_la==T__5) {
 				{
-				setState(40); match(T__8);
+				setState(44); match(T__5);
 				}
 			}
 
@@ -260,56 +265,56 @@ public class RuleSetGrammarParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
+			setState(48);
 			_la = _input.LA(1);
 			if (_la==SYMBOL) {
 				{
-				setState(43); match(SYMBOL);
+				setState(47); match(SYMBOL);
 				}
 			}
 
-			setState(46); match(NOTE);
-			setState(48);
+			setState(50); match(NOTE);
+			setState(52);
 			_la = _input.LA(1);
 			if (_la==DIGIT) {
 				{
-				setState(47); match(DIGIT);
+				setState(51); match(DIGIT);
 				}
 			}
 
-			setState(53);
+			setState(57);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(50);
+					setState(54);
 					_la = _input.LA(1);
-					if ( !(_la==T__4 || _la==T__1) ) {
+					if ( !(_la==T__2 || _la==T__1) ) {
 					_errHandler.recoverInline(this);
 					}
 					consume();
 					}
 					} 
 				}
-				setState(55);
+				setState(59);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			}
-			setState(57);
+			setState(61);
 			_la = _input.LA(1);
 			if (_la==T__0) {
 				{
-				setState(56); match(T__0);
+				setState(60); match(T__0);
 				}
 			}
 
-			setState(60);
+			setState(64);
 			_la = _input.LA(1);
-			if (_la==T__8) {
+			if (_la==T__5) {
 				{
-				setState(59); match(T__8);
+				setState(63); match(T__5);
 				}
 			}
 
@@ -364,26 +369,26 @@ public class RuleSetGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67); 
+			setState(71); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
-				setState(67);
+				setState(71);
 				switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 				case 1:
 					{
-					setState(62); note();
+					setState(66); note();
 					}
 					break;
 
 				case 2:
 					{
-					setState(63); match(T__1);
-					setState(64); match(TEXT);
-					setState(65);
+					setState(67); match(T__1);
+					setState(68); match(TEXT);
+					setState(69);
 					_la = _input.LA(1);
-					if ( !(_la==T__10 || _la==T__1) ) {
+					if ( !(_la==T__12 || _la==T__1) ) {
 					_errHandler.recoverInline(this);
 					}
 					consume();
@@ -392,12 +397,12 @@ public class RuleSetGrammarParser extends Parser {
 
 				case 3:
 					{
-					setState(66); macro_def();
+					setState(70); macro_def();
 					}
 					break;
 				}
 				}
-				setState(69); 
+				setState(73); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << SYMBOL) | (1L << NOTE))) != 0) );
@@ -415,26 +420,27 @@ public class RuleSetGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\25J\4\2\t\2\4\3\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\30N\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\7\2\17\n\2\f\2\16\2\22\13\2\3\2\3\2"+
-		"\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\5\4#\n\4\3\4\6\4"+
-		"&\n\4\r\4\16\4\'\3\4\3\4\5\4,\n\4\3\5\5\5/\n\5\3\5\3\5\5\5\63\n\5\3\5"+
-		"\7\5\66\n\5\f\5\16\59\13\5\3\5\5\5<\n\5\3\5\5\5?\n\5\3\6\3\6\3\6\3\6\3"+
-		"\6\6\6F\n\6\r\6\16\6G\3\6\2\2\7\2\4\6\b\n\2\4\4\2\t\t\f\f\4\2\3\3\f\f"+
-		"P\2\f\3\2\2\2\4\26\3\2\2\2\6\35\3\2\2\2\b.\3\2\2\2\nE\3\2\2\2\f\20\5\4"+
-		"\3\2\r\17\5\6\4\2\16\r\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2"+
-		"\2\21\23\3\2\2\2\22\20\3\2\2\2\23\24\7\7\2\2\24\25\5\n\6\2\25\3\3\2\2"+
-		"\2\26\27\7\b\2\2\27\30\7\20\2\2\30\31\7\4\2\2\31\32\7\23\2\2\32\33\7\6"+
-		"\2\2\33\34\7\23\2\2\34\5\3\2\2\2\35\36\7\f\2\2\36\37\7\22\2\2\37 \7\3"+
-		"\2\2 \"\7\n\2\2!#\7\5\2\2\"!\3\2\2\2\"#\3\2\2\2#%\3\2\2\2$&\5\b\5\2%$"+
-		"\3\2\2\2&\'\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2()\3\2\2\2)+\7\13\2\2*,\7\5\2"+
-		"\2+*\3\2\2\2+,\3\2\2\2,\7\3\2\2\2-/\7\16\2\2.-\3\2\2\2./\3\2\2\2/\60\3"+
-		"\2\2\2\60\62\7\17\2\2\61\63\7\23\2\2\62\61\3\2\2\2\62\63\3\2\2\2\63\67"+
-		"\3\2\2\2\64\66\t\2\2\2\65\64\3\2\2\2\669\3\2\2\2\67\65\3\2\2\2\678\3\2"+
-		"\2\28;\3\2\2\29\67\3\2\2\2:<\7\r\2\2;:\3\2\2\2;<\3\2\2\2<>\3\2\2\2=?\7"+
-		"\5\2\2>=\3\2\2\2>?\3\2\2\2?\t\3\2\2\2@F\5\b\5\2AB\7\f\2\2BC\7\22\2\2C"+
-		"F\t\3\2\2DF\5\6\4\2E@\3\2\2\2EA\3\2\2\2ED\3\2\2\2FG\3\2\2\2GE\3\2\2\2"+
-		"GH\3\2\2\2H\13\3\2\2\2\r\20\"\'+.\62\67;>EG";
+		"\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\5"+
+		"\4\'\n\4\3\4\6\4*\n\4\r\4\16\4+\3\4\3\4\5\4\60\n\4\3\5\5\5\63\n\5\3\5"+
+		"\3\5\5\5\67\n\5\3\5\7\5:\n\5\f\5\16\5=\13\5\3\5\5\5@\n\5\3\5\5\5C\n\5"+
+		"\3\6\3\6\3\6\3\6\3\6\6\6J\n\6\r\6\16\6K\3\6\2\2\7\2\4\6\b\n\2\4\3\2\r"+
+		"\16\4\2\3\3\16\16T\2\f\3\2\2\2\4\26\3\2\2\2\6!\3\2\2\2\b\62\3\2\2\2\n"+
+		"I\3\2\2\2\f\20\5\4\3\2\r\17\5\6\4\2\16\r\3\2\2\2\17\22\3\2\2\2\20\16\3"+
+		"\2\2\2\20\21\3\2\2\2\21\23\3\2\2\2\22\20\3\2\2\2\23\24\7\13\2\2\24\25"+
+		"\5\n\6\2\25\3\3\2\2\2\26\27\7\f\2\2\27\30\7\23\2\2\30\31\7\5\2\2\31\32"+
+		"\7\26\2\2\32\33\7\6\2\2\33\34\7\26\2\2\34\35\7\7\2\2\35\36\7\26\2\2\36"+
+		"\37\7\4\2\2\37 \7\21\2\2 \5\3\2\2\2!\"\7\16\2\2\"#\7\25\2\2#$\7\3\2\2"+
+		"$&\7\b\2\2%\'\7\n\2\2&%\3\2\2\2&\'\3\2\2\2\')\3\2\2\2(*\5\b\5\2)(\3\2"+
+		"\2\2*+\3\2\2\2+)\3\2\2\2+,\3\2\2\2,-\3\2\2\2-/\7\t\2\2.\60\7\n\2\2/.\3"+
+		"\2\2\2/\60\3\2\2\2\60\7\3\2\2\2\61\63\7\20\2\2\62\61\3\2\2\2\62\63\3\2"+
+		"\2\2\63\64\3\2\2\2\64\66\7\22\2\2\65\67\7\26\2\2\66\65\3\2\2\2\66\67\3"+
+		"\2\2\2\67;\3\2\2\28:\t\2\2\298\3\2\2\2:=\3\2\2\2;9\3\2\2\2;<\3\2\2\2<"+
+		"?\3\2\2\2=;\3\2\2\2>@\7\17\2\2?>\3\2\2\2?@\3\2\2\2@B\3\2\2\2AC\7\n\2\2"+
+		"BA\3\2\2\2BC\3\2\2\2C\t\3\2\2\2DJ\5\b\5\2EF\7\16\2\2FG\7\25\2\2GJ\t\3"+
+		"\2\2HJ\5\6\4\2ID\3\2\2\2IE\3\2\2\2IH\3\2\2\2JK\3\2\2\2KI\3\2\2\2KL\3\2"+
+		"\2\2L\13\3\2\2\2\r\20&+/\62\66;?BIK";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

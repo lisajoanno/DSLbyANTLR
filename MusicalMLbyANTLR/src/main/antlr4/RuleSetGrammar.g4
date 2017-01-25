@@ -1,6 +1,7 @@
 grammar RuleSetGrammar;
 
 SYMBOL : '¤' | '#';
+SYMBOL2 : '¤'* | '#'*;
 
 NOTE : (NOTE_NAME) ;
 
@@ -12,16 +13,16 @@ NOTE_NAME : 'do' | 're' | 'mi' | 'fa' | 'sol' | 'la' | 'si' ;
 
 TEXT : LETTER+ ;
 
-DIGIT : ('1'..'9')+ ;
+DIGIT : ('0'..'9')+ ;
 
-init : 'color ' COLOR 'speaker ' DIGIT 'screen ' DIGIT ;
+init : 'color ' COLOR 'speaker ' DIGIT 'screen ' DIGIT 'bpm ' DIGIT 'key ' SYMBOL2 ;
 
-macro_def : '-' TEXT '- ' '{' ' '? note+ '}' ' '?;
+macro_def : '-' TEXT '- ' '{' ' '? note+ '}' ' '? ;
 
 note : SYMBOL? NOTE DIGIT? ('+' | '-')* '.'? ' '? ;
 
 LETTER : ('a'..'z' | 'A'..'Z')+ ;
 
-score : (note | '-' TEXT ('-' | '- ') | macro_def)+;
+score : (note | '-' TEXT ('-' | '- ') | macro_def)+ ;
 
 WHITESPACE : ( '\t' | '\r' | '\n'| '\u000C' )+ -> skip ;
