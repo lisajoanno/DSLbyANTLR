@@ -1,13 +1,9 @@
-sensor button1 : 9
-sensor button2 : 10
+speaker spk : 8
 actuator led : 11
 init: on
 
 state on {
     led <= high
-    when button1 is high => off
-}
-state off {
-    led <= low
-    when button2 is high and button1 is low => on
+    tone spk <= 392 hz for 800 ms
+    when 1000 ms elapsed => on
 }

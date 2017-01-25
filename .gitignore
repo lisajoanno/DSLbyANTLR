@@ -46,4 +46,4 @@ fabric.properties
 
 
 # ADDED by lisa
-src/main/java/grammarGenerated/*
+src/main/java/grammarGenerated/**.class

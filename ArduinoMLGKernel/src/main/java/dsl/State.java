@@ -57,6 +57,7 @@ public class State {
             sb.append(action.toString());
         }
         sb.append("boolean guard = millis() - time > debounce; \n");
+
         for(int i = 0; i < transitions.size(); i++){
             sb.append(transitions.get(i).toString());
             if(i < transitions.size() - 1)

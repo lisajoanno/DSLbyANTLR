@@ -67,7 +67,7 @@ public class DSL {
         }
         sb.append("}\n");
 
-        sb.append("long time = 0; long debounce = 200;\n");
+        sb.append("bool played = false;long time = 0; long debounce = 200;\n");
 
         for(State s: states.values()){
             sb.append(s.toString());

@@ -30,7 +30,7 @@ public class Main {
             RuleSetGrammarParser parser = new RuleSetGrammarParser(tokens);
 
             RuleSetGrammarParser.DslContext tree = parser.dsl();
-            RuleSetGrammarBaseListener listener = new RuleSetGrammarBaseListener();
+            ArduinoMLGListener listener = new ArduinoMLGListener();
             ParseTreeWalker.DEFAULT.walk(listener, tree);
         } catch (Exception e) {
             System.err.println("There was an exception somewhere");
