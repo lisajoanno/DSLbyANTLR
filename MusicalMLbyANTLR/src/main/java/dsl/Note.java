@@ -4,9 +4,7 @@ import dsl.enums.Alteration;
 import dsl.enums.NoteName;
 import generation.StateName;
 
-import java.util.Random;
-
-import static java.lang.StrictMath.max;
+import static java.lang.StrictMath.min;
 
 /**
  * A note is a duration and a name, both described in enums because of their specificity.
@@ -54,8 +52,8 @@ public class Note extends ScoreItem {
         String res = "";
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
         res += "\tled <= HIGH\n";
-        res += "\ttone spk <= "+getInHZ()+" hz for "+getInMS()+" ms\n";
-        res += "\twhen " + rythm +" ms elapsed => s"+StateName.currentState + "\n";
+        res += "\ttone spk <= "+getInHZ()+" hz for "+rythm+" ms\n";
+        res += "\twhen " + getInMS() +" ms elapsed => s"+StateName.currentState + "\n";
         res += "}\n\n";
         return res;
     }
@@ -65,8 +63,6 @@ public class Note extends ScoreItem {
     }
 
     private int getInMS() {
-        return (int) max(100, rythm*0.3);
-
-        //return (new Random()).nextInt(10000);
+        return (int) (rythm + min(100, rythm*0.3));
     }
 }
