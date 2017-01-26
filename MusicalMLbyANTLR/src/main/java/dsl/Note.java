@@ -52,7 +52,7 @@ public class Note extends ScoreItem {
         String res = "";
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
         res += "\tled <= HIGH\n";
-        res += "\ttone spk <= "+getInHZ()+" hz for "+rythm+" ms\n";
+        res += "\ttone spk <= "+getInHZ()+" hz for "+(int)rythm+" ms\n";
         res += "\twhen " + getInMS() +" ms elapsed => s"+StateName.currentState + "\n";
         res += "}\n\n";
         return res;

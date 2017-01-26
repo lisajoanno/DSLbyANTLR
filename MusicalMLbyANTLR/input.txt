@@ -5,8 +5,8 @@ bpm 60
 key ##
 
 -refrain- { #re3+ re3.
-¤re4++. re4 ¤re3. #re--
-re--
+¤re4++. re4 ¤re3. #re3--
+re3--. re3- re3-.
 }
 
 -ending- { #do3+ do3.

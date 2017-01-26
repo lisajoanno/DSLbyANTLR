@@ -170,7 +170,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		if (nc.getChild(end).toString().equals(" ")) {
 			end--;
 		}
-
 		if (nc.SYMBOL() != null) {
 			start++;
 		}
@@ -178,7 +177,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			start++;
 		}
 
-		int size = end - start -1;
+		int size = end - start;
 		boolean isSemi = (nc.getChild(end).toString().equals("."));
         size = (size > 0 ? size : 0);
         // if isPlus, it's '+', if isPlus is false, then it's '-' character
@@ -188,6 +187,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
 
         double res = (isSemi ? 1.5 : 1);
+		size = (isSemi ? size-1 : size);
         if (isPlus) {
 			res *= (Math.pow(2, size));
 		} else {
