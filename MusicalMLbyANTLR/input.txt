@@ -1,30 +1,22 @@
 color blue
-speaker 9
+speaker 8
 screen 12
-bpm 60
-key ##
-
--refrain- { #re3+ re3.
-¤re4++. re4 ¤re3. #re3--
-re3--. re3- re3-.
-}
-
--ending- { #do3+ do3.
-¤do4++. do4 ¤do3
-}
+bpm 240
+key ###
 
 score
-la3 #la3 ¤si3 si3 #si3 do4
--refrain- #fa3+ fa3. -okok- { ¤mi4++. mi4 ¤mi3. } #fa--
-#fa3+ fa3. ¤fa4++. fa4 ¤fa3. #fa--. -refrain- #fa3+
-fa3. -okok- ¤fa4++. fa4 ¤fa3. #fa--. -ending- #re3+ #fa6+++.
-#fa--
-#fa--
-#fa--
-#fa--
--lel- { fa4 ¤fa3. #fa- }
-#fa--
-#fa--
-#fa--
-#fa--
-#fa--
+-intro- { fa4 mi4 fa4 mi4 re4 do4 la3++ sol3 do4 la3++
+re3 fa3 mi3- fa3- sol3+ la3 fa3+ mi3 re3+. re3 fa3 mi3- fa3- sol3+ do4 la3+ sol3 la3+.
+re3 fa3 mi3- fa3- sol3+ la3 fa3+ mi3 re3+ re3 do3+
+do3- re3- mi3. fa3- mi3 re3++. }
+-intro-
+
+la3. sol3- la3 sol3+ re3 la3+ do4 sol3+.
+la3. sol3- la3 sol3+ re3- mi3- fa3+ sol3 mi3+.
+la3. sol3- la3 sol3+ re3 la3+ do4 sol3+ sol3
+la3. sol3- la3 si3+ sol3 la3++
+la3 re4+ re4 do4+ sol3 la3++
+la3 re4+ mi4- re4- do4+ sol3 la3++
+la3 sol3+ la3- sol3- fa3+ mi3 re3++
+la3 sol3+ la3- sol3- fa3+ mi3- mi3- re3+++
+
