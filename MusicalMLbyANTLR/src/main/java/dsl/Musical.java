@@ -84,7 +84,8 @@ public class Musical {
         String res =
                 "actuator led : " + screenPin + "\n" +
                 "speaker spk : " + speakerPin + "\n" +
-                "init: s"+ StateName.currentState+"\n\n";
+                "init: s"+ StateName.currentState+"\n" +
+                "serial LOW \n\n";
 
         // soit une note soit une macro
         for (ScoreItem s : mainScore) {
