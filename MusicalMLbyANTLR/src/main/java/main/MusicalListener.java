@@ -82,7 +82,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 					String macroName = (ctx.getChild(i).getText().trim());
 					if (!macroName.equals("-")) {
 						try {
-							MacroName nameOfMacro = new MacroName(macroName) ;
+							MacroName nameOfMacro = new MacroName(macroName);
 							musical.getMainScore().add(nameOfMacro);
 						} catch (Exception m) {
 							//The macro used did not exist
@@ -161,8 +161,18 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
         return a;
     }
 
+    private int lastOctave = -1;
     private int getOctaveFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
-		if (nc.DIGIT() == null) return 0;
+    	// si c'est la première note
+    	if (lastOctave < 0) {
+			System.out.println("on initialise last octave");
+			lastOctave = Integer.valueOf(nc.DIGIT().toString());
+		}
+    	// si pas de nouvelle octave, on prend la dernière
+		if (nc.DIGIT() == null) {
+			return lastOctave;
+		}
+		lastOctave = Integer.valueOf(nc.DIGIT().toString());
 		return Integer.valueOf(nc.DIGIT().toString());
     }
 

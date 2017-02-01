@@ -5,7 +5,7 @@ bpm 240
 key ###
 
 score
--intro- { fa4 mi4 fa4 mi4 re4 do4 la3++ sol3 do4 la3++
+-intro- { fa4 mi fa mi re do la3++ sol3 do4 la3++
 re3 fa3 mi3- fa3- sol3+ la3 fa3+ mi3 re3+. re3 fa3 mi3- fa3- sol3+ do4 la3+ sol3 la3+.
 re3 fa3 mi3- fa3- sol3+ la3 fa3+ mi3 re3+ re3 do3+
 do3- re3- mi3. fa3- mi3 re3++. }
