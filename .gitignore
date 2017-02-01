@@ -47,7 +47,8 @@ fabric.properties
 
 # ADDED by lisa
 src/main/java/grammarGenerated/**.class
-input.txt
-output.txt
+**/input.txt
+**/output.txt
+**/output*.txt
 ArduinoMLGKernel/src/main/java/grammar
 ArduinoMLGKernel/src/main/java/grammar/

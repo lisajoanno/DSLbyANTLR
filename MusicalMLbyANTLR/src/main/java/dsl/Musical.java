@@ -23,12 +23,20 @@ public class Musical {
     private int speakerPin;
     // the beat!
     private int bpm;
+    // should the rgb screen be activated or not
+    private String serial;
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    private String key;
 
     public void setKey(String key) {
         this.key = key;
     }
 
-    private String key;
+
 
 
     private List<Macro> macros;
@@ -85,7 +93,7 @@ public class Musical {
                 "actuator led : " + screenPin + "\n" +
                 "speaker spk : " + speakerPin + "\n" +
                 "init: s"+ StateName.currentState+"\n" +
-                "serial LOW \n\n";
+                "serial " + serial + " \n\n";
 
         // soit une note soit une macro
         for (ScoreItem s : mainScore) {
