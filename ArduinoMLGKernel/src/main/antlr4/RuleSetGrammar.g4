@@ -22,7 +22,7 @@ condition : (timeCondition | logicalCondition);
 timeCondition : DIGIT 'ms' 'elapsed';
 logicalCondition : TEXT 'is' binaryState;
 transition :'when' condition ('and' condition)* '=>' TEXT;
-state : 'state' TEXT '{' action* transition* '}';
+state : 'state' TEXT '{' action* transition*'}';
 binaryState : ('HIGH' | 'LOW');
 
 

@@ -55,6 +55,7 @@ public class Note extends ScoreItem {
     protected String toString(Boolean silent) {
         String res = "";
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
+        res += "\tserialPrint " + noteName.getUsName() + (int) rythm + "\n";
         res += "\tled <= HIGH\n";
         if (!silent) {
             res += "\ttone spk <= " + getInHZ() + " hz for " + (int) rythm + " ms\n";
