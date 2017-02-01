@@ -14,7 +14,7 @@ public class SerialPrint extends Action {
         this.text = text;
     }
 
-    public String toString(){
-        return text;
+    public String toString() {
+        return "Serial.println(\"" + text + "\");\n";
     }
 }

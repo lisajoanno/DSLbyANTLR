@@ -5,23 +5,25 @@ grammar RuleSetGrammar;
 }
 
 
-dsl : (actuator | sensor | speaker)+ init+ state* ;
+dsl : (actuator | sensor | speaker)+ init+ serial state* ;
 
 // Lexer Rules
 sensor : 'sensor' TEXT ':' DIGIT;
 actuator : 'actuator' TEXT ':' DIGIT;
 speaker : 'speaker' TEXT ':' DIGIT;
-serial : ;
+serial : 'serial' binaryState;
 init : 'init:' TEXT;
 action : (logicalAction | tone | serialPrint);
-logicalAction : TEXT '<=' TEXT;
+serialPrint : 'serialPrint' TEXT;
+logicalAction : TEXT '<=' binaryState;
 tone : 'tone' TEXT '<=' DIGIT ('hz'|'Hz') 'for' DIGIT 'ms';
-serialPrint : 'serialprint' TEXT;
+
 condition : (timeCondition | logicalCondition);
 timeCondition : DIGIT 'ms' 'elapsed';
-logicalCondition : TEXT 'is' TEXT;
+logicalCondition : TEXT 'is' binaryState;
 transition :'when' condition ('and' condition)* '=>' TEXT;
-state : 'state' TEXT '{' action* transition+ '}';
+state : 'state' TEXT '{' action* transition* '}';
+binaryState : ('HIGH' | 'LOW');
 
 
 DIGIT: ('1'..'9')? ('0'..'9')+;

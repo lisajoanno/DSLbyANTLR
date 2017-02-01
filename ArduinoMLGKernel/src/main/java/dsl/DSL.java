@@ -9,10 +9,13 @@ public class DSL {
     private Map<String, Brick> bricks;
     private Map<String, State> states;
     private String initState;
+    private boolean serialActivated;
    public DSL(){
        bricks = new HashMap<>();
        states = new HashMap<>();
    }
+
+
 
     public Map<String, Brick> getBricks() {
         return bricks;
@@ -65,9 +68,14 @@ public class DSL {
         for(Brick b: bricks.values()){
             sb.append(b.toString());
         }
+        if(serialActivated) {
+            sb.append("  Serial.begin(9600);\n" +
+                    "  while (!Serial) {\n" +
+                    "    ; // wait for serial port to connect. Needed for native USB port only\n" +
+                    "  }");
+        }
         sb.append("}\n");
-
-        sb.append("bool played = false;long time = 0; long debounce = 200;\n");
+        sb.append("bool acted = false;long time = 0; long debounce = 200;\n");
 
         for(State s: states.values()){
             sb.append(s.toString());
@@ -82,5 +90,13 @@ public class DSL {
         } else {
             throw  new RuntimeException("INITIAL STATE "+stateName+" NOT FOUND");
         }
+    }
+
+    public void setSerialActivated(boolean serialActivated) {
+        this.serialActivated = serialActivated;
+    }
+
+    public boolean isSerialActivated() {
+        return serialActivated;
     }
 }

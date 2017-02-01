@@ -53,9 +53,12 @@ public class State {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("void state_"+name+"(){\n");
+        sb.append("if(!acted){\n");
         for(Action action:actions){
             sb.append(action.toString());
         }
+        sb.append("acted = true;\n");
+        sb.append("}\n");
         sb.append("boolean guard = millis() - time > debounce; \n");
 
         for(int i = 0; i < transitions.size(); i++){
@@ -63,9 +66,13 @@ public class State {
             if(i < transitions.size() - 1)
                 sb.append("else ");
         }
-        sb.append(" else { \n");
-        sb.append("state_"+name+"();\n");
-        sb.append("}\n}\n");
+        if(transitions.size() > 0) {
+            sb.append(" else { \n");
+            sb.append("state_" + name + "();\n");
+            sb.append("}\n}\n");
+        } else {
+            sb.append("}\n");
+        }
         return sb.toString();
     }
 }

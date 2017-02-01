@@ -49,7 +49,7 @@ public class Transition {
         }
         sb.append(" && guard");
         sb.append("){\n");
-        sb.append("played =false;");
+        sb.append("acted =false;");
         sb.append(" time = millis();");
         sb.append("state_"+target.getName()+"();\n");
         sb.append("}");

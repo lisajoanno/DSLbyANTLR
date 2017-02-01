@@ -25,7 +25,7 @@ public class Tone extends Action {
     }
 
     public String toString(){
-        return "if(!played){\nplayed=true;\ntone("+speaker.getPin()+","+frequency+","+length+");\n}\n";
+        return "tone("+speaker.getPin()+","+frequency+","+length+");\n";
     }
 
     public Speaker getSpeaker() {

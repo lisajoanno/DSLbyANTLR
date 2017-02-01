@@ -1,9 +1,0 @@
-speaker spk : 8
-actuator led : 11
-init: on
-
-state on {
-    led <= high
-    tone spk <= 392 hz for 800 ms
-    when 1000 ms elapsed => on
-}
