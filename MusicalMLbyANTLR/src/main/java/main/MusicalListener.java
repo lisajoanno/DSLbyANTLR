@@ -148,6 +148,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
 			note.setAlteration(alt);
 			note.setOctave(oct);
+			note.setRythm(rythm);
 		}
 		return note;
 	}
@@ -163,9 +164,8 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 
     private int lastOctave = -1;
     private int getOctaveFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
-    	// si c'est la première note
+		// si c'est la première note
     	if (lastOctave < 0) {
-			System.out.println("on initialise last octave");
 			lastOctave = Integer.valueOf(nc.DIGIT().toString());
 		}
     	// si pas de nouvelle octave, on prend la dernière
@@ -196,7 +196,6 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
         boolean isPlus = true;
 
         if (size > 0) isPlus = (nc.getChild(start+1).toString().equals("+"));
-
 
         double res = (isSemi ? 1.5 : 1);
 		size = (isSemi ? size-1 : size);
