@@ -6,15 +6,18 @@ package dsl.enums;
  * Created by lisa on 11/01/17.
  */
 public enum NoteName {
-    DO("do", -4.5), RE("re", -3.5), MI("mi", -2.5),
-    FA("fa", -2), SOL("sol", -1), LA("la", 0), SI("si", 1);
+    DO("do", -4.5, "c"), RE("re", -3.5, "d"), MI("mi", -2.5, "e"),
+    FA("fa", -2, "f"), SOL("sol", -1, "g"), LA("la", 0, "a"), SI("si", 1, "b");
 
     private String noteName;
     private double place;
+    private String usName;
 
-    NoteName(String s, double place) {
+
+    NoteName(String s, double place, String us) {
         this.noteName = s;
         this.place = place;
+        this.usName = us;
     }
 
     public int getFrq(int octave, Alteration alteration) {
@@ -22,9 +25,10 @@ public enum NoteName {
         return (int) Math.round(440* Math.pow(2, actualPlace/12));
     }
 
-    public String getNoteName() {
-        return noteName;
+    public String getUsName() {
+        return usName;
     }
+
 
     /**
      * Returns the NoteName corresponding to the String in parameters.
