@@ -2,6 +2,9 @@ package dsl;
 
 import dsl.enums.Alteration;
 import dsl.enums.NoteName;
+import generation.StateName;
+
+import static java.lang.StrictMath.min;
 
 /**
  * A note is a duration and a name, both described in enums because of their specificity.
@@ -46,6 +49,27 @@ public class Note extends ScoreItem {
 
     @Override
     public String toString() {
-        return "(name : " + noteName.getNoteName() + ", octave : " + octave + ", alt : " + alteration + ", rythm : "+ rythm + ")";
+        return toString(false);
+    }
+
+    protected String toString(Boolean silent) {
+        String res = "";
+        res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
+        res += "\tled <= HIGH\n";
+        if (!silent) {
+            res += "\ttone spk <= " + getInHZ() + " hz for " + (int) rythm + " ms\n";
+        }
+        res += "\twhen " + getInMS() +" ms elapsed => s"+StateName.currentState + "\n";
+        res += "}\n\n";
+        return res;
+
+    }
+
+    protected int getInHZ() {
+        return noteName.getFrq(octave, alteration);
+    }
+
+    protected int getInMS() {
+        return (int) (rythm + min(100, rythm*0.3));
     }
 }

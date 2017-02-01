@@ -1,6 +1,8 @@
 color blue
 speaker 9
 screen 12
+bpm 675
+key ###
 
 -refrain- { #do6+++. }
 

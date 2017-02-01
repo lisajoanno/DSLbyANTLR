@@ -11,8 +11,4 @@ public class MacroName extends ScoreItem {
     public MacroName(String name) {
         this.name = name;
     }
-
-    public String toString() {
-        return "Insérer ici les notes de [" + name + "]";
-    }
 }

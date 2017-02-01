@@ -2,6 +2,7 @@ package dsl;
 
 import dsl.enums.Color;
 import dsl.exceptions.MacroDoesntExistException;
+import generation.StateName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,15 @@ public class Musical {
     private int screenPin;
     // the pin where the buzzer will be plugged
     private int speakerPin;
+    // the beat!
+    private int bpm;
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    private String key;
+
 
     private List<Macro> macros;
     // ScoreItem -> notes, of a macro name, to be replaced by its notes
@@ -71,26 +81,35 @@ public class Musical {
 
     @Override
     public String toString() {
-        String res = "Musical \n\n" +
-                "The color used : " + color + "\n" +
-                "The pin of the screen : " + screenPin + "\n" +
-                "The pin of the speaker : " + speakerPin + "\n\n" +
-                "Your macros : \n\n";
+        String res =
+                "actuator led : " + screenPin + "\n" +
+                "speaker spk : " + speakerPin + "\n" +
+                "init: s"+ StateName.currentState+"\n\n";
 
-        for (Macro macro : macros) {
-            res += macro;
-        }
-        res += "\n\n\n\n\n";
-        res += "The main score : \n\n";
-        for (ScoreItem aMainScore : mainScore) {
-            try {
-                //res += mainScore.get(j) + "\n";
-                String macroName = ((MacroName) aMainScore).name;
-                res += getMacroFromMacrosList(macroName);
-            } catch (Exception e) {
-                res += aMainScore + "\n";
+        // soit une note soit une macro
+        for (ScoreItem s : mainScore) {
+            if (s.getClass() == MacroName.class) {
+                try {
+                    res += "\n\n" + getMacroFromMacrosList(((MacroName) s).name) + "\n\n";
+                } catch (MacroDoesntExistException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                res += s.toString() + "";
             }
         }
+
+        // fin --> on crée l'état final
+        res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
+        res += "}";
         return res;
+    }
+
+    public int getBpm() {
+        return bpm;
+    }
+
+    public void setBpm(int bpm) {
+        this.bpm = bpm;
     }
 }

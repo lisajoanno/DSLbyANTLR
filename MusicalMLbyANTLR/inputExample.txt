@@ -1,66 +1,20 @@
 color blue
 speaker 9
 screen 12
+bpm 60
+key ##
 
--refrain- { do @re
-*mi
-fa sol *sol
+-refrain- { #re3+ re3.
+¤re4++. re4 ¤re3. #re--
+re--
 }
 
--oif- {
-do
-re do
-}
-
-score
-*do
-re
-@mi -iof- -refrain- mi
-@fa -refrain- *sol
-la
--refrain- *do
-*do
-*re
-mi
-
-
-
-color blue
-speaker 9
-screen 12
-
-
-//rien:noire
-+1:blanche
-+2:ronde
--1.croche
--2:demiecroche
-
-#do3+. #sol3+. ¤re4++. fa4- ¤mi3. #do--.
-
-
-(mi- sol)- (¤fa-. sol la si)-- sol- (la si)--
-
--refrain- { do @re
-*mi
-fa sol *sol
-}
-
--oif- {
-do
-re do
+-ending- { #do3+ do3.
+¤do4++. do4 ¤do3
 }
 
 score
--ttt-
--refrain- { *do
-re
-@mi } -oif- -refrain- mi
-@fa -refrain- *sol
-la
--refrain- *do
-*do -ttt- {
+-refrain- #fa3+ fa3. -okok- { ¤mi4++. mi4 ¤mi3. } #fa--
+#fa3+ fa3. ¤fa4++. fa4 ¤fa3. #fa--. -refrain- #fa3+
+fa3. -okok- ¤fa4++. fa4 ¤fa3. #fa--. -ending- #re3+ #fa6+++.
 
-}
-*re
-mi
