@@ -1,7 +1,7 @@
 package dsl.enums;
 
 /**
- * List of notes by their french names.
+ * List of notes by their french names and their frequences.
  *
  * Created by lisa on 11/01/17.
  */
