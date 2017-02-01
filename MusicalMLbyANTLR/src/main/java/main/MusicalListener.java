@@ -2,10 +2,7 @@ package main;
 
 // Generated from RuleSetGrammar.g4 by ANTLR 4.3
 
-import dsl.Macro;
-import dsl.MacroName;
-import dsl.Musical;
-import dsl.Note;
+import dsl.*;
 import dsl.enums.Alteration;
 import dsl.enums.Color;
 import dsl.enums.NoteName;
@@ -73,7 +70,8 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		for (int i = 0; i < ctx.getChildCount(); i++) {
 			try {
 				RuleSetGrammarParser.NoteContext nc = (RuleSetGrammarParser.NoteContext) (ctx.getChild(i));
-				musical.getMainScore().add(getNoteFromNoteContext(nc));
+				Note note = getNoteFromNoteContext(nc);
+				musical.getMainScore().add(note);
 			} catch (ClassCastException e) {
 				try {
 					RuleSetGrammarParser.Macro_defContext nc = (RuleSetGrammarParser.Macro_defContext) (ctx.getChild(i));
@@ -138,15 +136,19 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	/****************************** utils ******************************/
 
 	private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
-		Note note = new Note();
+		Note note;
         Alteration alt = getAlterationFromNoteContext(nc);
         double rythm = getRythmFromNoteContext(nc);
         int oct = getOctaveFromNoteContext(nc);
 
-		note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
-		note.setAlteration(alt);
-		note.setOctave(oct);
-		note.setRythm(rythm);
+		if (nc.NOTE().getText().equals("$")) {
+			note = new Silence(rythm);
+		} else {
+			note = new Note();
+			note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
+			note.setAlteration(alt);
+			note.setOctave(oct);
+		}
 		return note;
 	}
 

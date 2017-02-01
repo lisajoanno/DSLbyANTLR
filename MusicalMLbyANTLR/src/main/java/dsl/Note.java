@@ -49,20 +49,27 @@ public class Note extends ScoreItem {
 
     @Override
     public String toString() {
+        return toString(false);
+    }
+
+    protected String toString(Boolean silent) {
         String res = "";
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
         res += "\tled <= HIGH\n";
-        res += "\ttone spk <= "+getInHZ()+" hz for "+(int)rythm+" ms\n";
+        if (!silent) {
+            res += "\ttone spk <= " + getInHZ() + " hz for " + (int) rythm + " ms\n";
+        }
         res += "\twhen " + getInMS() +" ms elapsed => s"+StateName.currentState + "\n";
         res += "}\n\n";
         return res;
+
     }
 
-    private int getInHZ() {
+    protected int getInHZ() {
         return noteName.getFrq(octave, alteration);
     }
 
-    private int getInMS() {
+    protected int getInMS() {
         return (int) (rythm + min(100, rythm*0.3));
     }
 }
