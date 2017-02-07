@@ -1,6 +1,10 @@
 package main;
 
 import dsl.DSL;
+import exception.BrickAlreadyExistsException;
+import exception.PortAlreadyInUseException;
+import exception.PortOutOfRangeException;
+import exception.StateAlreadyExistsException;
 import org.junit.Test;
 
 import java.util.Map;
@@ -28,21 +32,21 @@ public class ArduinoMLGListenerTest {
 
         }
 
-        @Test(expected = RuntimeException.class)
+        @Test(expected = PortAlreadyInUseException.class)
         public void samePortTest(){
             Main.runListener("resources/samePort.txt");
         }
 
-        @Test(expected = RuntimeException.class)
+        @Test(expected = PortOutOfRangeException.class)
         public void outOfRangeTest(){
             Main.runListener("resources/outOfRange.txt");
         }
 
-        @Test(expected = RuntimeException.class)
+        @Test(expected = BrickAlreadyExistsException.class)
         public void sameBrickNameTest(){
             Main.runListener("resources/sameBrickName.txt");
         }
-        @Test(expected = RuntimeException.class)
+        @Test(expected = StateAlreadyExistsException.class)
         public void sameStateTest(){
             Main.runListener("resources/sameStateTest.txt");
         }

@@ -27,7 +27,7 @@ void setup()
 unsigned char x,y,z;
 char notes[] = {'A','B','C','D','E','F'};
 int height[] = {0,0,0,0,0,0,0};
-uint32_t color = 0x00;
+uint32_t color = 0xFFFFFF;
 int currentNote = -1;
 int descentTime = 20;
 

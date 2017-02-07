@@ -1,4 +1,4 @@
-actuator led : 14
+actuator led : 12
 init: s0
 
 state s0 {

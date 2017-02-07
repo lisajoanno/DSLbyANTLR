@@ -1,5 +1,7 @@
 package dsl;
 
+import exception.*;
+
 import java.util.*;
 
 /**
@@ -46,14 +48,14 @@ public class DSL {
     public void addBrick(Brick b){
         String name = b.getName();
         if(bricks.containsKey(name)){
-            throw new RuntimeException("BRICKS ALREADY EXISTS");
+            throw new BrickAlreadyExistsException(name);
         }
         int pin = b.getPin();
         if(pin > MAX_PORT || pin < MIN_PORT){
-            throw new RuntimeException("PIN "+b.getPin()+ " for brick "+b.getName()+ " is out of range\nrange is["+MIN_PORT+";"+MAX_PORT+"]");
+            throw new PortOutOfRangeException(name,b.getPin(),MIN_PORT,MAX_PORT);
         }
         if(usedPorts.contains(pin)){
-            throw new RuntimeException("PIN "+b.getPin()+" for brick "+b.getName()+"IS ALREADY IN USE");
+            throw new PortAlreadyInUseException(name,b.getPin());
         }
         usedPorts.add(pin);
         bricks.put(name,b);
@@ -61,8 +63,8 @@ public class DSL {
 
     public void addState(State s){
         String name = s.getName();
-        if(bricks.containsKey(name)){
-            throw new RuntimeException("STATE ALREADY EXISTS");
+        if(states.containsKey(name)){
+            throw new StateAlreadyExistsException(s.getName());
         }
         states.put(name,s);
     }
@@ -71,13 +73,13 @@ public class DSL {
         if(bricks.containsKey(name)){
             return bricks.get(name);
         }
-        throw  new RuntimeException("Non existent brick "+name);
+        throw  new BrickNotFoundException(name);
     }
     public State getState(String name){
         if(states.containsKey(name)){
             return states.get(name);
         }
-        throw new RuntimeException("Non existent state "+name);
+        throw new StateNotFoundException(name);
     }
 
     public String toString(){
