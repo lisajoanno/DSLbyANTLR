@@ -1,6 +1,7 @@
 package dsl.exceptions;
 
 /**
+ * Exception thrown if the key is not ok.
  *
  * Created by Lisa Joanno on 07/02/17.
  */

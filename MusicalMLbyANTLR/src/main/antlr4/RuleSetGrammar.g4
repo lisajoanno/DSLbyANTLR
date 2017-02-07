@@ -1,6 +1,6 @@
 grammar RuleSetGrammar;
 
-SYMBOL : '¤' | '#';
+SYMBOL : '¤' | '#' | '=' ;
 NOTE : (NOTE_NAME | SILENCE) ;
 COLOR : 'red' | 'green' | 'blue' ;
 NOTE_NAME : 'do' | 're' | 'mi' | 'fa' | 'sol' | 'la' | 'si' ;

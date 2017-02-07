@@ -25,8 +25,8 @@ public class Musical {
     private int bpm;
     // should the rgb screen be activated or not
     private String serial;
-    //
-    private String key = "";
+    // the keyAlt alterations
+    private String keyAlt = "";
 
 
 
@@ -47,7 +47,8 @@ public class Musical {
                 "actuator led : " + screenPin + "\n" +
                         "speaker spk : " + speakerPin + "\n" +
                         "init: s"+ StateName.currentState+"\n" +
-                        "serial " + serial + " \n\n";
+                        "serial " + serial + " \n" +
+                        "debounce : " + 100 + "\n";
 
         // soit une note soit une macro
         for (ScoreItem s : mainScore) {
@@ -79,12 +80,12 @@ public class Musical {
         this.serial = serial;
     }
 
-    public String getKey() {
-        return key;
+    public String getKeyAlt() {
+        return keyAlt;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setKeyAlt(String keyAlt) {
+        this.keyAlt = keyAlt;
     }
 
     public Color getColor() {
