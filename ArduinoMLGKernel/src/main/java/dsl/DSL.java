@@ -11,9 +11,15 @@ public class DSL {
     private String initState;
     private boolean serialActivated;
     private int debounce = 200;
+
+    private static int MAX_PORT = 13;
+    private static int MIN_PORT = 0;
+    private Set<Integer> usedPorts;
+
    public DSL(){
        bricks = new HashMap<>();
        states = new HashMap<>();
+       usedPorts = new HashSet<>();
    }
 
    public void setDebounce(int debounce){
@@ -42,6 +48,14 @@ public class DSL {
         if(bricks.containsKey(name)){
             throw new RuntimeException("BRICKS ALREADY EXISTS");
         }
+        int pin = b.getPin();
+        if(pin > MAX_PORT || pin < MIN_PORT){
+            throw new RuntimeException("PIN "+b.getPin()+ " for brick "+b.getName()+ " is out of range\nrange is["+MIN_PORT+";"+MAX_PORT+"]");
+        }
+        if(usedPorts.contains(pin)){
+            throw new RuntimeException("PIN "+b.getPin()+" for brick "+b.getName()+"IS ALREADY IN USE");
+        }
+        usedPorts.add(pin);
         bricks.put(name,b);
     }
 
