@@ -15,6 +15,7 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
     private DSL dsl;
     private Transition transition;
     private List<Condition> conditionList;
+    private State state;
     @Override
     public void enterDebounce(@NotNull RuleSetGrammarParser.DebounceContext ctx){
         dsl.setDebounce(Integer.parseInt(ctx.DIGIT().getText()));
@@ -56,17 +57,14 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
         LogicalAction logicalAction = new LogicalAction();
         logicalAction.setActuator((Actuator) dsl.getBrick(ctx.TEXT().toString()));
         logicalAction.setBinaryState(BinaryState.valueOf(ctx.binaryState().getText().toString()));
-        RuleSetGrammarParser.StateContext stateContext = (RuleSetGrammarParser.StateContext)ctx.getParent().getParent();
-        State s = dsl.getState(stateContext.TEXT().toString());
-        s.addAction(logicalAction);
+        state.addAction(logicalAction);
     }
     @Override
     public void enterSerialPrint(@NotNull RuleSetGrammarParser.SerialPrintContext ctx){
-        RuleSetGrammarParser.StateContext stateContext = (RuleSetGrammarParser.StateContext)ctx.getParent().getParent();
-        State s = dsl.getState(stateContext.TEXT().toString());
+
         SerialPrint serialPrint = new SerialPrint();
         serialPrint.setText(ctx.TEXT().toString());
-        s.addAction(serialPrint);
+        state.addAction(serialPrint);
     }
     @Override
     public void enterTone(@NotNull RuleSetGrammarParser.ToneContext ctx){
@@ -75,8 +73,7 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
         tone.setLength(Long.parseLong(ctx.DIGIT(1).toString()));
         tone.setSpeaker((Speaker)dsl.getBrick(ctx.TEXT().toString()));
         RuleSetGrammarParser.StateContext stateContext = (RuleSetGrammarParser.StateContext)ctx.getParent().getParent();
-        State s = dsl.getState(stateContext.TEXT().toString());
-        s.addAction(tone);
+        state.addAction(tone);
     }
 
     @Override
@@ -102,10 +99,14 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
 
     @Override
     public void exitTransition(@NotNull RuleSetGrammarParser.TransitionContext ctx){
-        RuleSetGrammarParser.StateContext stateContext = (RuleSetGrammarParser.StateContext)ctx.getParent();
-        State s = dsl.getState(stateContext.TEXT().toString());
+
         transition.setConditions(conditionList);
-        s.addTransition(transition);
+        state.addTransition(transition);
+    }
+
+    @Override
+    public void enterState(@NotNull RuleSetGrammarParser.StateContext ctx){
+        state = dsl.getState(ctx.TEXT().toString());
     }
     @Override public void enterDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
         dsl = new DSL();
