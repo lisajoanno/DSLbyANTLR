@@ -54,7 +54,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		musical.setScreenPin(Integer.parseInt(ctx.DIGIT(1).toString()));
 		musical.setBpm(Integer.parseInt(ctx.DIGIT(2).toString()));
 		for (TerminalNode terminalNode : ctx.SYMBOL()) {
-			musical.setKey(musical.getKey() + terminalNode.toString());
+			musical.setKeyAlt(musical.getKeyAlt() + terminalNode.toString());
 		}
 		musical.setSerial(ctx.CHOICE().toString());
 	}
@@ -133,6 +133,11 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	}
 
 
+
+
+
+
+
 	/****************************** utils ******************************/
 
 	private Note getNoteFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
@@ -144,8 +149,8 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		if (nc.NOTE().getText().equals("$")) {
 			note = new Silence(rythm);
 		} else {
-			note = new Note(musical.getKey());
-			note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
+			note = new Note(musical.getKeyAlt());
+			note.setNoteName(NoteName.valueOf(nc.NOTE().getText()));
 			note.setAlteration(alt);
 			note.setOctave(oct);
 			note.setRythm(rythm);
@@ -154,12 +159,10 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	}
 
 	private Alteration getAlterationFromNoteContext(RuleSetGrammarParser.NoteContext nc) {
-		Alteration a = Alteration.NATURAL;
 		if (nc.SYMBOL() != null) {
-			if (nc.SYMBOL().getText().equals("#")) a = Alteration.SHARP;
-			else a = Alteration.FLAT;
+			return Alteration.valueOf(nc.SYMBOL().getText().charAt(0));
 		}
-        return a;
+		return Alteration.ORIGINAL;
     }
 
     private int lastOctave = -1;

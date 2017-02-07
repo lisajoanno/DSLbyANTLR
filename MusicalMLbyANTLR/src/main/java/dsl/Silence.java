@@ -4,6 +4,8 @@ import dsl.enums.Alteration;
 import dsl.enums.NoteName;
 
 /**
+ * A silence.
+ *
  * Created by atlas on 01/02/17.
  */
 public class Silence extends Note {

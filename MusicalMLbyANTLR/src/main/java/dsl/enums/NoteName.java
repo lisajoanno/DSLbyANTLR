@@ -29,14 +29,25 @@ public enum NoteName {
         this.usName = us;
     }
 
+    /**
+     * Returns the frequency of the note.
+     *
+     * @param octave the octave of the note
+     * @param alteration the note alteration
+     * @param keyType the score key alteration
+     * @param keyNumber the number of key alteration
+     * @return the frequency of the note
+     */
     public int getFrq(int octave, Alteration alteration, Alteration keyType, int keyNumber) {
         List alteredNotes = new ArrayList(sharpOrder);
         if (keyType == Alteration.FLAT) {
             Collections.reverse(alteredNotes);
         }
         alteredNotes = alteredNotes.subList(0, keyNumber);
-
-        double keyModifier = alteredNotes.contains(this) ? keyType.getValue() : 0;
+        double keyModifier = 0;
+        if (alteration != Alteration.NATURAL && alteredNotes.contains(this)) {
+            keyModifier = keyType.getValue();
+        }
         double modifier = keyModifier + alteration.getValue();
 
         double actualPlace = 2*((place + modifier) + ((octave-3) * 6)); //-3 in order to have LA3 = 440Hz
@@ -45,37 +56,6 @@ public enum NoteName {
 
     public String getUsName() {
         return usName;
-    }
-
-
-    /**
-     * Returns the NoteName corresponding to the String in parameters.
-     *
-     * @param s the String to convert into NoteName
-     * @return the NoteName or null if it does not convert well (poorly handled because the grammar should not let that happen) (theoretically)
-     */
-    public static NoteName getTheNoteName(String s) {
-        //TODO return valueOf(s);
-        for (NoteName nn : values()) {
-            if (nn.noteName.equals(s.trim())) return nn;
-        }
-        return null;
-    }
-
-    private NoteName getInterval(int interval) {
-        NoteName[] notes = values();
-        for(int i = 0; i < notes.length; i++) {
-            if(notes[i].equals(this)){
-                /* To prevent    -1 % 7 = -1   when the interval is negative */
-                int intervalNoteId = (((i + interval) % notes.length) + notes.length) % notes.length;
-                /*  It would be cleaner to use Maths.floorMod() but it's java 1.8
-                    and the maven java compiler is set to 1.7.
-                    And I don't want to break everything for you if you don't have the last jdk */
-//                int intervalNodeId = floorMod(i+interval, notes.length);
-                return notes[intervalNoteId];
-            }
-        }
-        return null;
     }
 
 }

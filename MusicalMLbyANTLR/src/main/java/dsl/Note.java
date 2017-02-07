@@ -24,16 +24,6 @@ public class Note extends ScoreItem {
         this.keyType = this.keyNumber > 0 ? Alteration.valueOf(key.charAt(0)) : null;
     }
 
-    public Note(NoteName noteName, Alteration alteration, int octave, double rythm) {
-        this.noteName = noteName;
-        this.alteration = alteration;
-        this.octave = octave;
-        this.rythm = rythm;
-    }
-
-
-
-
     public void setNoteName(NoteName noteName) {
         this.noteName = noteName;
     }
@@ -56,7 +46,7 @@ public class Note extends ScoreItem {
         return toString(false);
     }
 
-    protected String toString(Boolean silent) {
+    String toString(Boolean silent) {
         String res = "";
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
         res += "\tserialPrint " + getUsName() + (int) rythm + "\n";

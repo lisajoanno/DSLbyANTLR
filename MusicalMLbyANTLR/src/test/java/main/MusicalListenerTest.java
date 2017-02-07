@@ -1,13 +1,11 @@
 package main;
 
 import dsl.Macro;
-import dsl.Note;
 import dsl.enums.Alteration;
 import dsl.enums.Color;
-import dsl.enums.NoteName;
 import org.junit.Test;
 
-import static dsl.enums.NoteName.LA;
+import static dsl.enums.NoteName.*;
 import static org.junit.Assert.*;
 
 /**
@@ -19,10 +17,11 @@ public class MusicalListenerTest {
 
     @Test
     public void testFrq() throws Exception {
-        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.SHARP, 0),440);
+        assertEquals(LA.getFrq(3, Alteration.ORIGINAL, Alteration.SHARP, 0),440);
         assertEquals(LA.getFrq(3, Alteration.FLAT, Alteration.SHARP, 0),415);
-        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.FLAT, 3),415);
-        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.FLAT, 2),440);
+        assertEquals(LA.getFrq(3, Alteration.ORIGINAL, Alteration.FLAT, 3),415);
+        assertEquals(LA.getFrq(3, Alteration.ORIGINAL, Alteration.FLAT, 2),440);
+        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.FLAT, 3),440);
     }
 
     @Test
