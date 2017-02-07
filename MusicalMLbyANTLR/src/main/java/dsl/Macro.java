@@ -19,6 +19,7 @@ public class Macro {
         return macroName;
     }
 
+
     public void setMacroName(String macroName) {
         this.macroName = macroName;
     }

@@ -7,6 +7,7 @@ import dsl.enums.Color;
 import dsl.enums.NoteName;
 import org.junit.Test;
 
+import static dsl.enums.NoteName.LA;
 import static org.junit.Assert.*;
 
 /**
@@ -15,6 +16,14 @@ import static org.junit.Assert.*;
  * Created by Lisa Joanno on 20/01/17.
  */
 public class MusicalListenerTest {
+
+    @Test
+    public void testFrq() throws Exception {
+        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.SHARP, 0),440);
+        assertEquals(LA.getFrq(3, Alteration.FLAT, Alteration.SHARP, 0),415);
+        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.FLAT, 3),415);
+        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.FLAT, 2),440);
+    }
 
     @Test
     public void testDSLOK() throws Exception {

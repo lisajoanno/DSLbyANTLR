@@ -1,5 +1,10 @@
 package dsl.enums;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * List of notes by their french names and their frequences.
  *
@@ -8,7 +13,11 @@ package dsl.enums;
 public enum NoteName {
     DO("do", -4.5, "c"), RE("re", -3.5, "d"), MI("mi", -2.5, "e"),
     FA("fa", -2, "f"), SOL("sol", -1, "g"), LA("la", 0, "a"), SI("si", 1, "b");
+    private static List<NoteName> sharpOrder;
 
+    static {
+        sharpOrder = Arrays.asList(FA, DO, SOL, RE, LA, MI, SI);
+    }
     private String noteName;
     private double place;
     private String usName;
@@ -20,8 +29,17 @@ public enum NoteName {
         this.usName = us;
     }
 
-    public int getFrq(int octave, Alteration alteration) {
-        double actualPlace = 2*((place + alteration.getValue()) + ((octave-3) * 6)); //-3 in order to have LA3 = 440Hz
+    public int getFrq(int octave, Alteration alteration, Alteration keyType, int keyNumber) {
+        List alteredNotes = new ArrayList(sharpOrder);
+        if (keyType == Alteration.FLAT) {
+            Collections.reverse(alteredNotes);
+        }
+        alteredNotes = alteredNotes.subList(0, keyNumber);
+
+        double keyModifier = alteredNotes.contains(this) ? keyType.getValue() : 0;
+        double modifier = keyModifier + alteration.getValue();
+
+        double actualPlace = 2*((place + modifier) + ((octave-3) * 6)); //-3 in order to have LA3 = 440Hz
         return (int) Math.round(440* Math.pow(2, actualPlace/12));
     }
 
