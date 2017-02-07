@@ -61,10 +61,11 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
     }
     @Override
     public void enterSerialPrint(@NotNull RuleSetGrammarParser.SerialPrintContext ctx){
-
-        SerialPrint serialPrint = new SerialPrint();
-        serialPrint.setText(ctx.TEXT().toString());
-        state.addAction(serialPrint);
+        if(dsl.isSerialActivated()) {
+            SerialPrint serialPrint = new SerialPrint();
+            serialPrint.setText(ctx.TEXT().toString());
+            state.addAction(serialPrint);
+        }
     }
     @Override
     public void enterTone(@NotNull RuleSetGrammarParser.ToneContext ctx){
@@ -119,6 +120,10 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
         }
 
 
+    }
+
+    public DSL getDsl(){
+        return dsl;
     }
 
 

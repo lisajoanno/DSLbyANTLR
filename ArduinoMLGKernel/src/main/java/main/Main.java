@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -36,17 +37,7 @@ public class Main {
             System.exit(-1);
         }
         try {
-            String query = new String(Files.readAllBytes(Paths.get(fileName)));
-            //System.out.println("\n---------- Analyzing :\n" + query + "\n----------\n\n");
-            ANTLRInputStream input = new ANTLRInputStream(query);
-            RuleSetGrammarLexer lexer = new RuleSetGrammarLexer(input);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-            RuleSetGrammarParser parser = new RuleSetGrammarParser(tokens);
-
-            RuleSetGrammarParser.DslContext tree = parser.dsl();
-            ArduinoMLGListener listener = new ArduinoMLGListener();
-            ParseTreeWalker.DEFAULT.walk(listener, tree);
+            ArduinoMLGListener listener = runListener(fileName);
             PrintWriter writer = new PrintWriter(outputName, "UTF-8");
             writer.print(listener.getProgram());
             writer.close();
@@ -55,6 +46,26 @@ public class Main {
             System.err.println("There was an exception somewhere");
             e.printStackTrace();
         }
+    }
+
+    public  static ArduinoMLGListener runListener(String fileName) {
+        String query = null;
+        try {
+            query = new String(Files.readAllBytes(Paths.get(fileName)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //System.out.println("\n---------- Analyzing :\n" + query + "\n----------\n\n");
+        ANTLRInputStream input = new ANTLRInputStream(query);
+        RuleSetGrammarLexer lexer = new RuleSetGrammarLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+        RuleSetGrammarParser parser = new RuleSetGrammarParser(tokens);
+
+        RuleSetGrammarParser.DslContext tree = parser.dsl();
+        ArduinoMLGListener listener = new ArduinoMLGListener();
+        ParseTreeWalker.DEFAULT.walk(listener, tree);
+        return listener;
     }
 
 

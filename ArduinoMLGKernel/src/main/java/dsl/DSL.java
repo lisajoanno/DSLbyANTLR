@@ -10,7 +10,7 @@ public class DSL {
     private Map<String, State> states;
     private String initState;
     private boolean serialActivated;
-    private int debounce = 200;
+    private int debounce = 100;
 
     private static int MAX_PORT = 13;
     private static int MIN_PORT = 0;

@@ -1,0 +1,9 @@
+actuator led : 14
+init: s0
+
+state s0 {
+
+}
+state s0 {
+
+}

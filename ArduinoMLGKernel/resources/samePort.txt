@@ -1,0 +1,7 @@
+actuator led : 8
+actuator led2 : 8
+init: s0
+
+state s0 {
+
+}
