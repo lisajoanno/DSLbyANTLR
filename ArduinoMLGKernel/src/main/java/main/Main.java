@@ -37,7 +37,7 @@ public class Main {
         }
         try {
             String query = new String(Files.readAllBytes(Paths.get(fileName)));
-            System.out.println("\n---------- Analyzing :\n" + query + "\n----------\n\n");
+            //System.out.println("\n---------- Analyzing :\n" + query + "\n----------\n\n");
             ANTLRInputStream input = new ANTLRInputStream(query);
             RuleSetGrammarLexer lexer = new RuleSetGrammarLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);

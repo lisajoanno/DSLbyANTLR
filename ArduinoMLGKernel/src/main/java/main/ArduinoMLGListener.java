@@ -13,14 +13,20 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
     private String result;
     @Override public void enterDsl(@NotNull RuleSetGrammarParser.DslContext ctx) {
         dsl = new DSL();
-        boolean serialActivated = BinaryState.valueOf(ctx.serial().binaryState().getText().toString()) == BinaryState.HIGH;
+        boolean serialActivated = false;
+        if(ctx.serial() != null) {
+            serialActivated = BinaryState.valueOf(ctx.serial().binaryState().getText().toString()) == BinaryState.HIGH;
+        }
         dsl.setSerialActivated(serialActivated);
+
+        if(ctx.debounce() != null){
+            dsl.setDebounce(Integer.parseInt(ctx.debounce().DIGIT().getText()));
+        }
         for(RuleSetGrammarParser.SensorContext sc : ctx.sensor()){
             Sensor s = new Sensor();
             s.setName(sc.TEXT().toString());
             s.setPin(Integer.parseInt(sc.DIGIT().getText()));
             dsl.addBrick(s);
-            System.out.println("SENSOR "+sc.TEXT()+" DETECTED ON "+sc.DIGIT() );
         }
 
         for(RuleSetGrammarParser.ActuatorContext ac : ctx.actuator()){
@@ -28,7 +34,6 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
             a.setName(ac.TEXT().toString());
             a.setPin(Integer.parseInt(ac.DIGIT().getText()));
             dsl.addBrick(a);
-            System.out.println("ACTUATOR "+ac.TEXT()+" DETECTED ON "+ac.DIGIT() );
         }
         for(RuleSetGrammarParser.SpeakerContext spc : ctx.speaker()){
             Speaker s = new Speaker();
@@ -45,7 +50,6 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
         }
         for(RuleSetGrammarParser.StateContext sc : ctx.state()){
             State s = dsl.getState(sc.TEXT().toString());
-            System.out.println("STATE "+sc.TEXT());
             for(RuleSetGrammarParser.ActionContext ac : sc.action()){
                 Action action = null;
                 if(ac.logicalAction() != null) {
@@ -56,12 +60,14 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
                     action = logicalAction;
                 } else if (ac.serialPrint() != null){
                     if(!serialActivated){
-                        throw new RuntimeException("Can't output serial without it being activated !\n for" + ac.getText());
+                       // System.err.println("trying to print without serial, ignoring action !");
                     }
-                    SerialPrint serialPrint = new SerialPrint();
-                    RuleSetGrammarParser.SerialPrintContext spc = ac.serialPrint();
-                    serialPrint.setText(spc.TEXT().toString());
-                    action = serialPrint;
+                    {
+                        SerialPrint serialPrint = new SerialPrint();
+                        RuleSetGrammarParser.SerialPrintContext spc = ac.serialPrint();
+                        serialPrint.setText(spc.TEXT().toString());
+                        action = serialPrint;
+                    }
                 } else {
                     Tone tone = new Tone();
                     RuleSetGrammarParser.ToneContext toneContext = ac.tone();
@@ -70,14 +76,13 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
                     tone.setSpeaker((Speaker)dsl.getBrick(toneContext.TEXT().toString()));
                     action = tone;
                 }
-
-                s.addAction(action);
+                if(action != null)
+                    s.addAction(action);
             }
 
             for(RuleSetGrammarParser.TransitionContext tc : sc.transition()){
                 Transition transition = new Transition();
                 transition.setTarget(dsl.getState(tc.TEXT().toString()));
-                System.out.println("\tTRANSITION TO STATE "+tc.TEXT());
                 for(RuleSetGrammarParser.ConditionContext cc : tc.condition()){
                     Condition condition = null;
                     if(cc.logicalCondition() != null){
@@ -102,8 +107,6 @@ public class ArduinoMLGListener extends RuleSetGrammarBaseListener {
         }
 
         for(RuleSetGrammarParser.InitContext ic : ctx.init()){
-            System.out.println("INITIAL STATE:"+ic.getText());
-            //TODO set the initial state
             dsl.setInitState(ic.TEXT().toString());
         }
         result = dsl.toString();

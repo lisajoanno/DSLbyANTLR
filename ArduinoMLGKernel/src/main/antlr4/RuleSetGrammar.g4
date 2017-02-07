@@ -5,9 +5,10 @@ grammar RuleSetGrammar;
 }
 
 
-dsl : (actuator | sensor | speaker)+ init+ serial state* ;
+dsl : (actuator | sensor | speaker)+ init+ serial? debounce? state* ;
 
 // Lexer Rules
+debounce: 'debounce : ' DIGIT;
 sensor : 'sensor' TEXT ':' DIGIT;
 actuator : 'actuator' TEXT ':' DIGIT;
 speaker : 'speaker' TEXT ':' DIGIT;

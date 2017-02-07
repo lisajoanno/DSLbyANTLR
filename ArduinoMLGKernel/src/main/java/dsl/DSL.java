@@ -10,11 +10,15 @@ public class DSL {
     private Map<String, State> states;
     private String initState;
     private boolean serialActivated;
+    private int debounce = 200;
    public DSL(){
        bricks = new HashMap<>();
        states = new HashMap<>();
    }
 
+   public void setDebounce(int debounce){
+       this.debounce = debounce;
+   }
 
 
     public Map<String, Brick> getBricks() {
@@ -75,7 +79,7 @@ public class DSL {
                     "  }");
         }
         sb.append("}\n");
-        sb.append("bool acted = false;long time = 0; long debounce = 200;\n");
+        sb.append("bool acted = false;long time = 0; long debounce = "+debounce+";\n");
 
         for(State s: states.values()){
             sb.append(s.toString());
