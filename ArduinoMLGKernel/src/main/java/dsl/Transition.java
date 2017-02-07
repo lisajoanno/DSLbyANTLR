@@ -41,18 +41,20 @@ public class Transition {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("if(");
+        sb.append("\tif(");
+        sb.append("\t");
         for(int i = 0; i < conditions.size(); i++){
+
             sb.append(conditions.get(i).toString());
             if(i < conditions.size() - 1)
                 sb.append(" && ");
         }
         sb.append(" && guard");
         sb.append("){\n");
-        sb.append("acted =false;");
-        sb.append(" time = millis();");
+        sb.append("\t\tacted =false;");
+        sb.append("ime = millis();");
         sb.append("state_"+target.getName()+"();\n");
-        sb.append("}");
+        sb.append("\t}");
 
         return sb.toString();
     }

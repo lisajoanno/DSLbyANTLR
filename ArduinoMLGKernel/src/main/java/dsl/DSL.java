@@ -70,13 +70,14 @@ public class DSL {
         StringBuilder sb = new StringBuilder();
         sb.append("void setup() {\n");
         for(Brick b: bricks.values()){
+            sb.append("\t");
             sb.append(b.toString());
         }
         if(serialActivated) {
-            sb.append("  Serial.begin(9600);\n" +
-                    "  while (!Serial) {\n" +
-                    "    ; // wait for serial port to connect. Needed for native USB port only\n" +
-                    "  }");
+            sb.append("\tSerial.begin(9600);\n" +
+                    "\twhile (!Serial) {\n" +
+                    "\t\t; // wait for serial port to connect. Needed for native USB port only\n" +
+                    "\t}");
         }
         sb.append("}\n");
         sb.append("bool acted = false;long time = 0; long debounce = "+debounce+";\n");

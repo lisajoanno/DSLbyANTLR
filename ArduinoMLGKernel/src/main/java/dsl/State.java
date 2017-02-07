@@ -53,23 +53,25 @@ public class State {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("void state_"+name+"(){\n");
-        sb.append("if(!acted){\n");
+        sb.append("\tif(!acted){\n");
         for(Action action:actions){
+            sb.append("\t");
             sb.append(action.toString());
         }
-        sb.append("acted = true;\n");
-        sb.append("}\n");
-        sb.append("boolean guard = millis() - time > debounce; \n");
+        sb.append("\t\tacted = true;\n");
+        sb.append("\t}\n");
+        sb.append("\tboolean guard = millis() - time > debounce; \n");
 
         for(int i = 0; i < transitions.size(); i++){
             sb.append(transitions.get(i).toString());
             if(i < transitions.size() - 1)
                 sb.append("else ");
         }
+        //check if there is outgoing transitions, if not don't print the else
         if(transitions.size() > 0) {
-            sb.append(" else { \n");
-            sb.append("state_" + name + "();\n");
-            sb.append("}\n}\n");
+            sb.append("else { \n");
+            sb.append("\t\tstate_" + name + "();\n");
+            sb.append("\t}\n}\n");
         } else {
             sb.append("}\n");
         }
