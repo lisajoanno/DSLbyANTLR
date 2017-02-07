@@ -3,6 +3,7 @@ speaker 9
 screen 12
 bpm 675
 key ###
+serial HIGH
 
 -refrain- { #do6+++. }
 

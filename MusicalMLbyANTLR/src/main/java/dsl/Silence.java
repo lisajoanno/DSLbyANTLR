@@ -11,6 +11,7 @@ public class Silence extends Note {
     private double duration;
 
     public Silence(double rythm) {
+        super("");
         super.setNoteName(null);
         super.setAlteration(null);
         super.setOctave(0);
@@ -31,5 +32,10 @@ public class Silence extends Note {
     @Override
     public String toString() {
         return super.toString(true);
+    }
+
+    @Override
+    public String getUsName() {
+        return "X";
     }
 }

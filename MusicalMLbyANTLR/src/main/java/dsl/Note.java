@@ -16,8 +16,12 @@ public class Note extends ScoreItem {
     private Alteration alteration;
     private int octave;
     private double rythm;
+    private Alteration keyType;
+    private int keyNumber;
 
-    public Note() {
+    public Note(String key) {
+        this.keyNumber = key.length();
+        this.keyType = this.keyNumber > 0 ? Alteration.valueOf(key.charAt(0)) : null;
     }
 
     public Note(NoteName noteName, Alteration alteration, int octave, double rythm) {
@@ -55,7 +59,7 @@ public class Note extends ScoreItem {
     protected String toString(Boolean silent) {
         String res = "";
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
-        res += "\tserialPrint " + noteName.getUsName() + (int) rythm + "\n";
+        res += "\tserialPrint " + getUsName() + (int) rythm + "\n";
         res += "\tled <= HIGH\n";
         if (!silent) {
             res += "\ttone spk <= " + getInHZ() + " hz for " + (int) rythm + " ms\n";
@@ -66,8 +70,13 @@ public class Note extends ScoreItem {
 
     }
 
+
+    public String getUsName() {
+        return noteName.getUsName();
+    }
+
     protected int getInHZ() {
-        return noteName.getFrq(octave, alteration);
+        return noteName.getFrq(octave, alteration, keyType, keyNumber);
     }
 
     protected int getInMS() {

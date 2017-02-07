@@ -23,12 +23,12 @@ public class Musical {
     private int speakerPin;
     // the beat!
     private int bpm;
+    // should the rgb screen be activated or not
+    private String serial;
+    //
+    private String key = "";
 
-    public void setKey(String key) {
-        this.key = key;
-    }
 
-    private String key;
 
 
     private List<Macro> macros;
@@ -38,6 +38,53 @@ public class Musical {
     public Musical() {
         macros = new ArrayList<>();
         mainScore = new ArrayList<>();
+    }
+
+
+    @Override
+    public String toString() {
+        String res =
+                "actuator led : " + screenPin + "\n" +
+                        "speaker spk : " + speakerPin + "\n" +
+                        "init: s"+ StateName.currentState+"\n" +
+                        "serial " + serial + " \n\n";
+
+        // soit une note soit une macro
+        for (ScoreItem s : mainScore) {
+            if (s.getClass() == MacroName.class) {
+                try {
+                    res += "\n\n" + getMacroFromMacrosList(((MacroName) s).name) + "\n\n";
+                } catch (MacroDoesntExistException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                res += s.toString() + "";
+            }
+        }
+
+        // fin --> on crée l'état final
+        res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
+        res += "}";
+        return res;
+    }
+
+    private Macro getMacroFromMacrosList(String macroName) throws MacroDoesntExistException {
+        for (Macro m : this.macros) {
+            if (m.getMacroName().equals(macroName)) return m;
+        }
+        throw new MacroDoesntExistException();
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public Color getColor() {
@@ -70,40 +117,6 @@ public class Musical {
 
     public List<ScoreItem> getMainScore() {
         return mainScore;
-    }
-
-    private Macro getMacroFromMacrosList(String macroName) throws MacroDoesntExistException {
-        for (Macro m : this.macros) {
-            if (m.getMacroName().equals(macroName)) return m;
-        }
-        throw new MacroDoesntExistException();
-    }
-
-    @Override
-    public String toString() {
-        String res =
-                "actuator led : " + screenPin + "\n" +
-                "speaker spk : " + speakerPin + "\n" +
-                "init: s"+ StateName.currentState+"\n" +
-                "serial LOW \n\n";
-
-        // soit une note soit une macro
-        for (ScoreItem s : mainScore) {
-            if (s.getClass() == MacroName.class) {
-                try {
-                    res += "\n\n" + getMacroFromMacrosList(((MacroName) s).name) + "\n\n";
-                } catch (MacroDoesntExistException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                res += s.toString() + "";
-            }
-        }
-
-        // fin --> on crée l'état final
-        res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
-        res += "}";
-        return res;
     }
 
     public int getBpm() {

@@ -1,0 +1,16 @@
+color blue
+speaker 8
+screen 12
+bpm 360
+key ##
+
+
+score
+#do3- #fa- #fa. #sol-- la-- la-- #fa-- #fa-- #fa- #fa-- la--
+#sol- mi- mi- #sol- la- #fa- #fa- #fa-- #fa--
+#do- #fa- #fa. #sol-- la- #fa-- #fa- #fa-- #fa-- la--
+#do4-- #do-- #do-- si3-- la-- la-- #sol-- #sol-- la- #fa- #fa- #fa-- la--
+#do4- #do si3- la- #sol- mi-- mi- mi-- #sol--
+si-- si-- si-- si-- la-- la-- #sol-- #sol-- la- #fa-- #fa la--
+#do4- #do- si3- la- #sol- mi- mi-- #sol-- #sol-- #sol--
+si-- si-- si-- si-- la-- la-- #sol-- #sol-- la- #fa-- #fa #fa--

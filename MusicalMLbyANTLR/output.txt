@@ -1,0 +1,609 @@
+actuator led : 12
+speaker spk : 8
+init: s0
+serial LOW 
+
+state s0 {
+	serialPrint c83
+	led <= HIGH
+	tone spk <= 277 hz for 83 ms
+	when 107 ms elapsed => s1
+}
+
+state s1 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s2
+}
+
+state s2 {
+	serialPrint f249
+	led <= HIGH
+	tone spk <= 370 hz for 249 ms
+	when 323 ms elapsed => s3
+}
+
+state s3 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s4
+}
+
+state s4 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s5
+}
+
+state s5 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s6
+}
+
+state s6 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s7
+}
+
+state s7 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s8
+}
+
+state s8 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s9
+}
+
+state s9 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s10
+}
+
+state s10 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s11
+}
+
+state s11 {
+	serialPrint g83
+	led <= HIGH
+	tone spk <= 415 hz for 83 ms
+	when 107 ms elapsed => s12
+}
+
+state s12 {
+	serialPrint e83
+	led <= HIGH
+	tone spk <= 330 hz for 83 ms
+	when 107 ms elapsed => s13
+}
+
+state s13 {
+	serialPrint e83
+	led <= HIGH
+	tone spk <= 330 hz for 83 ms
+	when 107 ms elapsed => s14
+}
+
+state s14 {
+	serialPrint g83
+	led <= HIGH
+	tone spk <= 415 hz for 83 ms
+	when 107 ms elapsed => s15
+}
+
+state s15 {
+	serialPrint a83
+	led <= HIGH
+	tone spk <= 440 hz for 83 ms
+	when 107 ms elapsed => s16
+}
+
+state s16 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s17
+}
+
+state s17 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s18
+}
+
+state s18 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s19
+}
+
+state s19 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s20
+}
+
+state s20 {
+	serialPrint c83
+	led <= HIGH
+	tone spk <= 277 hz for 83 ms
+	when 107 ms elapsed => s21
+}
+
+state s21 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s22
+}
+
+state s22 {
+	serialPrint f249
+	led <= HIGH
+	tone spk <= 370 hz for 249 ms
+	when 323 ms elapsed => s23
+}
+
+state s23 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s24
+}
+
+state s24 {
+	serialPrint a83
+	led <= HIGH
+	tone spk <= 440 hz for 83 ms
+	when 107 ms elapsed => s25
+}
+
+state s25 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s26
+}
+
+state s26 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s27
+}
+
+state s27 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s28
+}
+
+state s28 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s29
+}
+
+state s29 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s30
+}
+
+state s30 {
+	serialPrint c41
+	led <= HIGH
+	tone spk <= 554 hz for 41 ms
+	when 53 ms elapsed => s31
+}
+
+state s31 {
+	serialPrint c41
+	led <= HIGH
+	tone spk <= 554 hz for 41 ms
+	when 53 ms elapsed => s32
+}
+
+state s32 {
+	serialPrint c41
+	led <= HIGH
+	tone spk <= 554 hz for 41 ms
+	when 53 ms elapsed => s33
+}
+
+state s33 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s34
+}
+
+state s34 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s35
+}
+
+state s35 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s36
+}
+
+state s36 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s37
+}
+
+state s37 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s38
+}
+
+state s38 {
+	serialPrint a83
+	led <= HIGH
+	tone spk <= 440 hz for 83 ms
+	when 107 ms elapsed => s39
+}
+
+state s39 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s40
+}
+
+state s40 {
+	serialPrint f83
+	led <= HIGH
+	tone spk <= 370 hz for 83 ms
+	when 107 ms elapsed => s41
+}
+
+state s41 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s42
+}
+
+state s42 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s43
+}
+
+state s43 {
+	serialPrint c83
+	led <= HIGH
+	tone spk <= 554 hz for 83 ms
+	when 107 ms elapsed => s44
+}
+
+state s44 {
+	serialPrint c166
+	led <= HIGH
+	tone spk <= 554 hz for 166 ms
+	when 215 ms elapsed => s45
+}
+
+state s45 {
+	serialPrint b83
+	led <= HIGH
+	tone spk <= 494 hz for 83 ms
+	when 107 ms elapsed => s46
+}
+
+state s46 {
+	serialPrint a83
+	led <= HIGH
+	tone spk <= 440 hz for 83 ms
+	when 107 ms elapsed => s47
+}
+
+state s47 {
+	serialPrint g83
+	led <= HIGH
+	tone spk <= 415 hz for 83 ms
+	when 107 ms elapsed => s48
+}
+
+state s48 {
+	serialPrint e41
+	led <= HIGH
+	tone spk <= 330 hz for 41 ms
+	when 53 ms elapsed => s49
+}
+
+state s49 {
+	serialPrint e83
+	led <= HIGH
+	tone spk <= 330 hz for 83 ms
+	when 107 ms elapsed => s50
+}
+
+state s50 {
+	serialPrint e41
+	led <= HIGH
+	tone spk <= 330 hz for 41 ms
+	when 53 ms elapsed => s51
+}
+
+state s51 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s52
+}
+
+state s52 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s53
+}
+
+state s53 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s54
+}
+
+state s54 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s55
+}
+
+state s55 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s56
+}
+
+state s56 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s57
+}
+
+state s57 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s58
+}
+
+state s58 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s59
+}
+
+state s59 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s60
+}
+
+state s60 {
+	serialPrint a83
+	led <= HIGH
+	tone spk <= 440 hz for 83 ms
+	when 107 ms elapsed => s61
+}
+
+state s61 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s62
+}
+
+state s62 {
+	serialPrint f166
+	led <= HIGH
+	tone spk <= 370 hz for 166 ms
+	when 215 ms elapsed => s63
+}
+
+state s63 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s64
+}
+
+state s64 {
+	serialPrint c83
+	led <= HIGH
+	tone spk <= 554 hz for 83 ms
+	when 107 ms elapsed => s65
+}
+
+state s65 {
+	serialPrint c83
+	led <= HIGH
+	tone spk <= 554 hz for 83 ms
+	when 107 ms elapsed => s66
+}
+
+state s66 {
+	serialPrint b83
+	led <= HIGH
+	tone spk <= 494 hz for 83 ms
+	when 107 ms elapsed => s67
+}
+
+state s67 {
+	serialPrint a83
+	led <= HIGH
+	tone spk <= 440 hz for 83 ms
+	when 107 ms elapsed => s68
+}
+
+state s68 {
+	serialPrint g83
+	led <= HIGH
+	tone spk <= 415 hz for 83 ms
+	when 107 ms elapsed => s69
+}
+
+state s69 {
+	serialPrint e83
+	led <= HIGH
+	tone spk <= 330 hz for 83 ms
+	when 107 ms elapsed => s70
+}
+
+state s70 {
+	serialPrint e41
+	led <= HIGH
+	tone spk <= 330 hz for 41 ms
+	when 53 ms elapsed => s71
+}
+
+state s71 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s72
+}
+
+state s72 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s73
+}
+
+state s73 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s74
+}
+
+state s74 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s75
+}
+
+state s75 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s76
+}
+
+state s76 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s77
+}
+
+state s77 {
+	serialPrint b41
+	led <= HIGH
+	tone spk <= 494 hz for 41 ms
+	when 53 ms elapsed => s78
+}
+
+state s78 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s79
+}
+
+state s79 {
+	serialPrint a41
+	led <= HIGH
+	tone spk <= 440 hz for 41 ms
+	when 53 ms elapsed => s80
+}
+
+state s80 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s81
+}
+
+state s81 {
+	serialPrint g41
+	led <= HIGH
+	tone spk <= 415 hz for 41 ms
+	when 53 ms elapsed => s82
+}
+
+state s82 {
+	serialPrint a83
+	led <= HIGH
+	tone spk <= 440 hz for 83 ms
+	when 107 ms elapsed => s83
+}
+
+state s83 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s84
+}
+
+state s84 {
+	serialPrint f166
+	led <= HIGH
+	tone spk <= 370 hz for 166 ms
+	when 215 ms elapsed => s85
+}
+
+state s85 {
+	serialPrint f41
+	led <= HIGH
+	tone spk <= 370 hz for 41 ms
+	when 53 ms elapsed => s86
+}
+
+state s86 {
+}

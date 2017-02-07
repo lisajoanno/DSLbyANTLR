@@ -11,12 +11,9 @@ import grammar.RuleSetGrammarBaseListener;
 import grammar.RuleSetGrammarListener;
 import grammar.RuleSetGrammarParser;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +53,10 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		musical.setSpeakerPin(Integer.parseInt(ctx.DIGIT(0).toString()));
 		musical.setScreenPin(Integer.parseInt(ctx.DIGIT(1).toString()));
 		musical.setBpm(Integer.parseInt(ctx.DIGIT(2).toString()));
-		musical.setKey(ctx.SYMBOL_REPEAT().toString());
+		for (TerminalNode terminalNode : ctx.SYMBOL()) {
+			musical.setKey(musical.getKey() + terminalNode.toString());
+		}
+		musical.setSerial(ctx.CHOICE().toString());
 	}
 
 
@@ -144,7 +144,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 		if (nc.NOTE().getText().equals("$")) {
 			note = new Silence(rythm);
 		} else {
-			note = new Note();
+			note = new Note(musical.getKey());
 			note.setNoteName(NoteName.getTheNoteName(nc.NOTE().getText()));
 			note.setAlteration(alt);
 			note.setOctave(oct);
