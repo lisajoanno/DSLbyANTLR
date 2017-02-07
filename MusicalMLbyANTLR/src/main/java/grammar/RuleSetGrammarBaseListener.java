@@ -1,5 +1,7 @@
-package grammar;
 // Generated from RuleSetGrammar.g4 by ANTLR 4.3
+
+   package grammar;
+
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -12,6 +14,19 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * of the available methods.
  */
 public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInit_screen(@NotNull RuleSetGrammarParser.Init_screenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInit_screen(@NotNull RuleSetGrammarParser.Init_screenContext ctx) { }
+
 	/**
 	 * {@inheritDoc}
 	 *
@@ -50,6 +65,71 @@ public class RuleSetGrammarBaseListener implements RuleSetGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitScore(@NotNull RuleSetGrammarParser.ScoreContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInit_serial(@NotNull RuleSetGrammarParser.Init_serialContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInit_serial(@NotNull RuleSetGrammarParser.Init_serialContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInit_bpm(@NotNull RuleSetGrammarParser.Init_bpmContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInit_bpm(@NotNull RuleSetGrammarParser.Init_bpmContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInit_key(@NotNull RuleSetGrammarParser.Init_keyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInit_key(@NotNull RuleSetGrammarParser.Init_keyContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInit_speaker(@NotNull RuleSetGrammarParser.Init_speakerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInit_speaker(@NotNull RuleSetGrammarParser.Init_speakerContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInit_color(@NotNull RuleSetGrammarParser.Init_colorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInit_color(@NotNull RuleSetGrammarParser.Init_colorContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

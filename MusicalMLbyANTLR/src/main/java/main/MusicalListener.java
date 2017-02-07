@@ -6,7 +6,7 @@ import dsl.*;
 import dsl.enums.Alteration;
 import dsl.enums.Color;
 import dsl.enums.NoteName;
-import dsl.exceptions.ColorDoesntExistException;
+import generation.StateName;
 import grammar.RuleSetGrammarBaseListener;
 import grammar.RuleSetGrammarListener;
 import grammar.RuleSetGrammarParser;
@@ -40,23 +40,22 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 	@Override
 	public void enterInit(@NotNull RuleSetGrammarParser.InitContext ctx) {
 
-		try {
-			if (ctx.COLOR() == null) throw new ColorDoesntExistException();
-			musical.setColor(Color.getTheColor(ctx.COLOR().getText()));
-		} catch (ColorDoesntExistException c) {
-			//Problem with the color
-			System.err.println("Your color doesn't exist !");
-			//Default : blue
-			musical.setColor(Color.BLUE);
-		}
+//		try {
+//			if (ctx.COLOR() == null) throw new ColorDoesntExistException();
+//
+//		} catch (ColorDoesntExistException c) {
+//			//Problem with the color
+//			System.err.println("Your color doesn't exist !");
+//			//Default : blue
+//			musical.setColor(Color.BLUE);
+//		}
 
-		musical.setSpeakerPin(Integer.parseInt(ctx.DIGIT(0).toString()));
-		musical.setScreenPin(Integer.parseInt(ctx.DIGIT(1).toString()));
-		musical.setBpm(Integer.parseInt(ctx.DIGIT(2).toString()));
-		for (TerminalNode terminalNode : ctx.SYMBOL()) {
-			musical.setKeyAlt(musical.getKeyAlt() + terminalNode.toString());
-		}
-		musical.setSerial(ctx.CHOICE().toString());
+        musical.setColor(Color.valueOf(ctx.init_color().COLOR().getText().toUpperCase()));
+		musical.setSpeakerPin(Integer.parseInt(ctx.init_speaker().DIGIT().toString()));
+		musical.setScreenPin(Integer.parseInt(ctx.init_screen().DIGIT().toString()));
+        musical.setBpm(Integer.parseInt(ctx.init_bpm().DIGIT().toString()));
+        musical.setKeyAlt(ctx.init_key().KEY_ALT().toString());
+		musical.setSerial(ctx.init_serial().CHOICE().toString());
 	}
 
 
@@ -106,6 +105,9 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 					new FileOutputStream("output.txt"), "utf-8"))) {
 				writer.write(musical.toString());
+				if (StateName.currentState <= 140) {
+				    System.err.println("WARNING : you used more than 140 states. The generated code may not fit your arduino.");
+                }
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -150,7 +152,7 @@ public class MusicalListener extends RuleSetGrammarBaseListener {
 			note = new Silence(rythm);
 		} else {
 			note = new Note(musical.getKeyAlt());
-			note.setNoteName(NoteName.valueOf(nc.NOTE().getText()));
+			note.setNoteName(NoteName.valueOf(nc.NOTE().getText().toUpperCase()));
 			note.setAlteration(alt);
 			note.setOctave(oct);
 			note.setRythm(rythm);

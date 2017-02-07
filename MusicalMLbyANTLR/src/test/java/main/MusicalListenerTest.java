@@ -56,10 +56,4 @@ public class MusicalListenerTest {
         assertFalse(macroExists);
     }
 
-    @Test
-    public void testColorDoesntExist() throws Exception {
-        MusicalListener musicalListener = Main.runListener("resources/inputTestWrongColor.txt", false);
-        assert musicalListener != null;
-        assertEquals(musicalListener.musical.getColor(), Color.BLUE);
-    }
 }

@@ -1,6 +1,11 @@
 grammar RuleSetGrammar;
 
+@header {
+   package grammar;
+}
+
 SYMBOL : '¤' | '#' | '=' ;
+KEY_ALT : ('¤')* | ('#')* ;
 NOTE : (NOTE_NAME | SILENCE) ;
 COLOR : 'red' | 'green' | 'blue' ;
 NOTE_NAME : 'do' | 're' | 'mi' | 'fa' | 'sol' | 'la' | 'si' ;
@@ -10,7 +15,14 @@ TEXT : LETTER+ ;
 DIGIT : ('0'..'9')+ ;
 LETTER : ('a'..'z' | 'A'..'Z')+ ;
 
-init : 'color' COLOR 'speaker' DIGIT 'screen' DIGIT 'bpm' DIGIT 'key' SYMBOL* 'serial' CHOICE ;
+init_color : 'color' COLOR ;
+init_speaker : 'speaker' DIGIT ;
+init_screen : 'screen' DIGIT ;
+init_bpm : 'bpm' DIGIT ;
+init_key : 'key' KEY_ALT ;
+init_serial : 'serial' CHOICE ;
+
+init : init_color? init_speaker? init_screen? init_bpm? init_key? init_serial? ;
 macro_def : '-' TEXT '-' '{' note+ '}' ;
 note : SYMBOL? NOTE DIGIT? ('+' | '-')* '.'? ;
 score : (note | '-' TEXT '-' | macro_def)+ ;
