@@ -111,6 +111,30 @@ Dans ArduinoIDE, copiez le contenu du fichier *output.txt*, sélectionnez le bon
 
 #### Visualisez votre musique
 
-Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires. //TODO Fabien
+Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires. Voir la partie [<i class="icon-upload"></i> Configuration](#configuration).
+
+## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/gear-48.png"/> Configuration
+
+L'utilisation complète du DSL nécessite d'avoir installé :
+- Arduino IDE **1.6**
+- Python 2.7
+- L'écran LCD, qui est une Arduino Duemilanove ou Diecimila
+
+Pour regénérer grammaires et binaires des ML : 
+
+        ./build.sh
+
+#### Utiliser l'écran LCD
+
+Après avoir uploadé votre musique, repérez le port de l'arduino Uno (par exemple : "/dev/ttyACM0") et celui de l'arduino Duo.
+Puis, lancez :
+
+        python SerialPipe.py [PORT_UNO] [PORT_DUO]
+
+> Note : vous devez avoir uploadé une musique avec *serial HIGH*.
+
+Rebootez votre Arduino Uno. Enjoy !
+
+===================
 
 > Written with [StackEdit](https://stackedit.io/).
