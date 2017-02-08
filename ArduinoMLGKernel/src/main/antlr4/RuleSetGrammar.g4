@@ -1,7 +1,7 @@
 grammar RuleSetGrammar;
 
 
-@header {
+@header { package grammar;
 }
 
 

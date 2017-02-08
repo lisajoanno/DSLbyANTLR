@@ -51,7 +51,7 @@
                 <version>4.3</version>
                 <configuration>
                     <outputDirectory>
-                        src/main/java/grammarGenerated
+                        src/main/java/grammar
                     </outputDirectory>
                 </configuration>
                 <executions>
