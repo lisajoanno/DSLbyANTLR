@@ -7,7 +7,7 @@ grammar RuleSetGrammar;
 SYMBOL : '¤' | '#' | '=' ;
 KEY_ALT : ('¤')* | ('#')* ;
 NOTE : (NOTE_NAME | SILENCE) ;
-COLOR : 'red' | 'green' | 'blue' ;
+COLOR : 'red' | 'green' | 'blue' | 'white' ;
 NOTE_NAME : 'do' | 're' | 'mi' | 'fa' | 'sol' | 'la' | 'si' ;
 SILENCE : '$' ;
 CHOICE : 'HIGH' | 'LOW' ;

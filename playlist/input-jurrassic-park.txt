@@ -1,0 +1,31 @@
+color green
+speaker 8
+screen 12
+bpm 160
+key ¤¤
+serial HIGH
+
+score
+si3- la-
+si+. si- la-
+si+. si- la-
+si+ do4- do+ mi-
+mi+. re- si3-
+do4. la3- fa re4- si3-
+do4+. fa- si3-
+mi4. re- re+ do-
+do+. si3- la-
+si fa mi si- la-
+si fa mi si- la-
+si. do4- do. mi-
+mi+. re- si3-
+do4. la3- fa re4- si3-
+do4+. fa- si3-
+mi4. re- re. do-
+do+. si3- la-
+si fa mi si- la-
+si fa mi si- la-
+si+ fa si2
+¤la3+. si- la-
+si fa mi si- la-
+si fa mi si+. $+

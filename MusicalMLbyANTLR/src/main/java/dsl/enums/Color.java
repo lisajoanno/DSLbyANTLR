@@ -6,7 +6,7 @@ package dsl.enums;
  * Created by lisa on 11/01/17.
  */
 public enum Color {
-    RED("red"), GREEN("green"), BLUE("blue");
+    RED("red"), GREEN("green"), BLUE("blue"), WHITE("white");
 
     private String colorName;
 
