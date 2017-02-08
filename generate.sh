@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm output.txt
+
 cp input.txt MusicalMLbyANTLR/input.txt
 cd MusicalMLbyANTLR
 mvn exec:java
