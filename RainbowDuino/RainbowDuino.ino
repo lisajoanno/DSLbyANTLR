@@ -55,7 +55,7 @@ void serialEvent() {
       return;
     note = inChar;
     if(inChar == 'z') {
-      delay(1);
+        delay(1);
       Serial.println("received z");
       char colorV = (char)Serial.read();
       Serial.print("color:");
@@ -69,7 +69,14 @@ void serialEvent() {
         color = 0xFF0000;
       }
       return;
-    } 
+    } else if (inChar == 'y'){
+      int bpm = Serial.parseInt();
+      Serial.print("bpm");
+      Serial.println(bpm);
+      descentTime = (1000/(bpm/60))/8;
+      Serial.println(descentTime);
+      
+    }
     duration = Serial.parseInt();
     Serial.print("note:");
     Serial.println((char)note);
