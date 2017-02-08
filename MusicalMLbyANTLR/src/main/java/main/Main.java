@@ -1,11 +1,9 @@
 package main;
 
-import dsl.Musical;
-import grammar.*;
-
-
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
+import grammar.RuleSetGrammarLexer;
+import grammar.RuleSetGrammarParser;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.nio.file.Files;

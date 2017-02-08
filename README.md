@@ -7,7 +7,7 @@ Musical ML est un projet dans le cadre du cours de *Domain Specific Language* (D
 
 Ce DSL est adressé aux musiciens. Ils peuvent retranscrire leur partition littéralement sur notre DSL. À partir de ce DSL, ils peuvent lancer le code généré directement sur un Arduino.
 
-Le code généré joue la musique sur un haut-parleur et transmets des commandes au LCD pour afficher des animations correspondantes à la dite musique.
+Le code généré joue la musique sur un haut-parleur et transmet des commandes au LCD pour afficher des animations correspondantes à la dite musique.
 
 ## <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-48.png"/> Utiliser le DSL
 

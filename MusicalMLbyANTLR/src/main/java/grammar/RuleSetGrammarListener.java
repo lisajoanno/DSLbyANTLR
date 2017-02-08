@@ -1,5 +1,7 @@
-package grammar;
 // Generated from RuleSetGrammar.g4 by ANTLR 4.3
+
+   package grammar;
+
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -8,6 +10,17 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  * {@link RuleSetGrammarParser}.
  */
 public interface RuleSetGrammarListener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#init_screen}.
+	 * @param ctx the parse tree
+	 */
+	void enterInit_screen(@NotNull RuleSetGrammarParser.Init_screenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#init_screen}.
+	 * @param ctx the parse tree
+	 */
+	void exitInit_screen(@NotNull RuleSetGrammarParser.Init_screenContext ctx);
+
 	/**
 	 * Enter a parse tree produced by {@link RuleSetGrammarParser#init}.
 	 * @param ctx the parse tree
@@ -40,6 +53,61 @@ public interface RuleSetGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitScore(@NotNull RuleSetGrammarParser.ScoreContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#init_serial}.
+	 * @param ctx the parse tree
+	 */
+	void enterInit_serial(@NotNull RuleSetGrammarParser.Init_serialContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#init_serial}.
+	 * @param ctx the parse tree
+	 */
+	void exitInit_serial(@NotNull RuleSetGrammarParser.Init_serialContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#init_bpm}.
+	 * @param ctx the parse tree
+	 */
+	void enterInit_bpm(@NotNull RuleSetGrammarParser.Init_bpmContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#init_bpm}.
+	 * @param ctx the parse tree
+	 */
+	void exitInit_bpm(@NotNull RuleSetGrammarParser.Init_bpmContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#init_key}.
+	 * @param ctx the parse tree
+	 */
+	void enterInit_key(@NotNull RuleSetGrammarParser.Init_keyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#init_key}.
+	 * @param ctx the parse tree
+	 */
+	void exitInit_key(@NotNull RuleSetGrammarParser.Init_keyContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#init_speaker}.
+	 * @param ctx the parse tree
+	 */
+	void enterInit_speaker(@NotNull RuleSetGrammarParser.Init_speakerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#init_speaker}.
+	 * @param ctx the parse tree
+	 */
+	void exitInit_speaker(@NotNull RuleSetGrammarParser.Init_speakerContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link RuleSetGrammarParser#init_color}.
+	 * @param ctx the parse tree
+	 */
+	void enterInit_color(@NotNull RuleSetGrammarParser.Init_colorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleSetGrammarParser#init_color}.
+	 * @param ctx the parse tree
+	 */
+	void exitInit_color(@NotNull RuleSetGrammarParser.Init_colorContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link RuleSetGrammarParser#dsl}.

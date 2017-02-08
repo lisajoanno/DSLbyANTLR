@@ -40,4 +40,8 @@ public class Silence extends Note {
     public String getUsName() {
         return "X";
     }
+
+    public double getDuration() {
+        return duration;
+    }
 }

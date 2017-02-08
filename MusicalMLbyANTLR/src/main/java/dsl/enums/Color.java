@@ -1,7 +1,5 @@
 package dsl.enums;
 
-import dsl.exceptions.ColorDoesntExistException;
-
 /**
  * Possible colors to be displayed on RGB screen.
  *
@@ -15,19 +13,4 @@ public enum Color {
     Color(String s) {
         this.colorName = s;
     }
-
-    /**
-     * Returns a Color from the String in parameters or an exception if it does not exist.
-     * @param s the String to convert into Color
-     * @return a Color
-     * @throws ColorDoesntExistException if the color does not exist.
-     */
-    public static Color getTheColor(String s) throws ColorDoesntExistException {
-        for (Color c : values()) {
-            if (c.colorName.equals(s)) return c;
-        }
-         throw new ColorDoesntExistException();
-    }
-
-
 }

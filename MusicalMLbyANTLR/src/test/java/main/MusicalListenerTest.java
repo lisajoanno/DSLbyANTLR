@@ -15,14 +15,6 @@ import static org.junit.Assert.*;
  */
 public class MusicalListenerTest {
 
-    @Test
-    public void testFrq() throws Exception {
-        assertEquals(LA.getFrq(3, Alteration.ORIGINAL, Alteration.SHARP, 0),440);
-        assertEquals(LA.getFrq(3, Alteration.FLAT, Alteration.SHARP, 0),415);
-        assertEquals(LA.getFrq(3, Alteration.ORIGINAL, Alteration.FLAT, 3),415);
-        assertEquals(LA.getFrq(3, Alteration.ORIGINAL, Alteration.FLAT, 2),440);
-        assertEquals(LA.getFrq(3, Alteration.NATURAL, Alteration.FLAT, 3),440);
-    }
 
     @Test
     public void testDSLOK() throws Exception {
@@ -56,10 +48,4 @@ public class MusicalListenerTest {
         assertFalse(macroExists);
     }
 
-    @Test
-    public void testColorDoesntExist() throws Exception {
-        MusicalListener musicalListener = Main.runListener("resources/inputTestWrongColor.txt", false);
-        assert musicalListener != null;
-        assertEquals(musicalListener.musical.getColor(), Color.BLUE);
-    }
 }

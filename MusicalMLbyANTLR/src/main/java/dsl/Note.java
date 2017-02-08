@@ -72,4 +72,16 @@ public class Note extends ScoreItem {
     protected int getInMS() {
         return (int) (rythm + min(100, rythm*0.3));
     }
+
+    public int getKeyNumber() {
+        return keyNumber;
+    }
+
+    public Alteration getKeyType() {
+        return keyType;
+    }
+
+    public double getRythm() {
+        return rythm;
+    }
 }
