@@ -2,7 +2,7 @@
 
 rm output.txt
 
-cp input.txt MusicalMLbyANTLR/input.txt
+cp input*.txt MusicalMLbyANTLR/input.txt
 cd MusicalMLbyANTLR
 mvn exec:java
 cd ..

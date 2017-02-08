@@ -1,4 +1,4 @@
-color green
+color blue
 speaker 8
 screen 12
 bpm 120
