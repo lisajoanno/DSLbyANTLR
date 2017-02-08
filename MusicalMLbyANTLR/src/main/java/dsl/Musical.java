@@ -50,6 +50,11 @@ public class Musical {
                         "serial " + serial + " \n" +
                         "debounce : " + 100 + "\n";
 
+        res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
+        res += "\tserialPrint z" + color.getColorName().charAt(0) + " \n";
+        res += "\twhen " + 0 +" ms elapsed => s"+StateName.currentState + "\n";
+        res += "}";
+
         // soit une note soit une macro
         for (ScoreItem s : mainScore) {
             if (s.getClass() == MacroName.class) {

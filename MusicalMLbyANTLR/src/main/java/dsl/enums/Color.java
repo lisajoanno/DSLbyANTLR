@@ -13,4 +13,8 @@ public enum Color {
     Color(String s) {
         this.colorName = s;
     }
+
+    public String getColorName() {
+        return colorName;
+    }
 }
