@@ -67,6 +67,8 @@ void serialEvent() {
         color = 0x00FF00;
       } else if(colorV ==  'r') {
         color = 0xFF0000;
+      } else if(colorV == 'w'){
+        color = 0xFFFFFF;
       }
       return;
     } else if (inChar == 'y'){
