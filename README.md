@@ -118,12 +118,22 @@ Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécess
 L'utilisation complète du DSL nécessite d'avoir installé :
 - Arduino IDE **1.6**
 - Python 2.7
+- L'écran LCD, qui est une Arduino Duemilanove ou Diecimila
 
 Pour regénérer grammaires et binaires des ML : 
 
         ./build.sh
 
+#### Utiliser l'écran LCD
 
+Après avoir uploadé votre musique, repérez le port de l'arduino Uno (par exemple : "/dev/ttyACM0") et celui de l'arduino Duo.
+Puis, lancez :
+
+        python SerialPipe.py [PORT_UNO] [PORT_DUO]
+
+> Note : vous devez avoir uploadé une musique avec *serial HIGH*.
+
+Rebootez votre Arduino Uno. Enjoy !
 
 ===================
 
