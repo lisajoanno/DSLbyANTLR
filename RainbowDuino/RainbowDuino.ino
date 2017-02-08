@@ -54,14 +54,18 @@ void serialEvent() {
     if(inChar == '\n' || inChar == '\r')
       return;
     note = inChar;
-      if(inChar == 'z'){
+    if(inChar == 'z') {
+      delay(1);
+      Serial.println("received z");
       char colorV = (char)Serial.read();
-      Serial.println("got a color !!");
+      Serial.print("color:");
+      Serial.println(colorV);
+    
       if(colorV == 'b'){
         color = 0x0000FF;
       } else if(colorV == 'g'){
         color = 0x00FF00;
-      } else {
+      } else if(colorV ==  'r') {
         color = 0xFF0000;
       }
       return;
