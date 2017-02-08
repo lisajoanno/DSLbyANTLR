@@ -111,6 +111,20 @@ Dans ArduinoIDE, copiez le contenu du fichier *output.txt*, sélectionnez le bon
 
 #### Visualisez votre musique
 
-Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires. //TODO Fabien
+Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires. Voir la partie [<i class="icon-upload"></i> Configuration](#configuration).
+
+## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/gear-48.png"/> Configuration
+
+L'utilisation complète du DSL nécessite d'avoir installé :
+- Arduino IDE **1.6**
+- Python 2.7
+
+Pour regénérer grammaires et binaires des ML : 
+
+        ./build.sh
+
+
+
+===================
 
 > Written with [StackEdit](https://stackedit.io/).
