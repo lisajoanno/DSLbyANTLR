@@ -21,7 +21,7 @@ La syntaxe du DSL est la suivante :
     key ¤
     serial HIGH
 
-Vous pouvez donc spécifier la couleur des leds du LCD, le pin du haut-parleur, le pin de l'écran LCD, le tempo de la musique, les altérations à la clef de votre partition (voir la partie  [<i class="icon-upload"></i> Altération](#altération)), et activer ou non le LCD.
+Vous pouvez donc spécifier la couleur des leds du LCD, le pin du haut-parleur, le pin de l'écran LCD, le tempo de la musique, les altérations à la clef de votre partition (voir la partie  [Altération](#altération)), et activer ou non le LCD.
 
 ### Partition
 
@@ -111,7 +111,7 @@ Dans ArduinoIDE, copiez le contenu du fichier *output.txt*, sélectionnez le bon
 
 #### Visualisez votre musique
 
-Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires. Voir la partie [<i class="icon-upload"></i> Configuration](#configuration).
+Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires. (voir la partie [Configuration](Configuration))
 
 ## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/gear-48.png"/> Configuration
 
