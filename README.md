@@ -111,7 +111,7 @@ Dans ArduinoIDE, copiez le contenu du fichier *output.txt*, sélectionnez le bon
 
 #### Visualisez votre musique
 
-Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires. (voir la partie [Configuration](Configuration))
+Si vous souhaitez utiliser l'écran, vous devez faire les configurations nécessaires (voir la partie [Configuration](#utiliser-lécran-lcd)).
 
 ## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/gear-48.png"/> Configuration
 
