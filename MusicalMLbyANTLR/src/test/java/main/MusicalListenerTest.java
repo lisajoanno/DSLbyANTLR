@@ -27,9 +27,7 @@ public class MusicalListenerTest {
         assertFalse(musicalListenerOK.musical.getMacros().isEmpty());
         assertTrue(musicalListenerOK.musical.getMacros().get(0).getMacroName().equals("refrain"));
         assertTrue(musicalListenerOK.musical.getMacros().get(1).getMacroName().equals("ending"));
-        // First note is     #do6+++.
-        //Note note = new Note(NoteName.DO, Alteration.SHARP, 6, (1.5 * Math.pow(2, 3)));
-        //assertTrue(musicalListenerOK.musical.getMacros().get(0).getNotes().get(0) == note);
+        assertEquals(musicalListenerOK.musical.getKeyAlt(), "##");
     }
 
     @Test

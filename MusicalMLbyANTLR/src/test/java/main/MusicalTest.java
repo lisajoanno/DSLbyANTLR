@@ -52,10 +52,4 @@ public class MusicalTest {
         assertEquals(n.getUsName(), "X");
         assertEquals(((Silence) n).getInMS(), duration);
     }
-
-
-    @Test
-    public void testKey() throws Exception {
-
-    }
 }
