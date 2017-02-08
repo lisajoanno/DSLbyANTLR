@@ -1,0 +1,25 @@
+color blue
+speaker 8
+screen 12
+bpm 120
+key ¤¤
+serial HIGH
+
+score
+la3 la- la- la la- la-
+la re fa la 
+sol sol- sol- sol sol- sol-
+sol do #mi sol
+la3 la- la- la la- la-
+la =si do4 re
+do la3 sol #mi
+re+ re+
+
+la+ la. la-
+la re fa la 
+sol+ sol. sol-
+sol do #mi sol
+la+ la. la-
+la =si do4 re
+do la3 sol #mi
+re+ re+

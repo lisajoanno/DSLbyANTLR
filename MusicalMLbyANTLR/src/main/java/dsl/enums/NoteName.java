@@ -11,20 +11,19 @@ import java.util.List;
  * Created by lisa on 11/01/17.
  */
 public enum NoteName {
-    DO("do", -4.5, "c"), RE("re", -3.5, "d"), MI("mi", -2.5, "e"),
-    FA("fa", -2, "f"), SOL("sol", -1, "g"), LA("la", 0, "a"), SI("si", 1, "b");
+    DO(-4.5, "c"), RE(-3.5, "d"), MI(-2.5, "e"),
+    FA(-2, "f"), SOL(-1, "g"), LA(0, "a"), SI(1, "b");
     private static List<NoteName> sharpOrder;
 
     static {
         sharpOrder = Arrays.asList(FA, DO, SOL, RE, LA, MI, SI);
     }
-    private String noteName;
+
     private double place;
     private String usName;
 
 
-    NoteName(String s, double place, String us) {
-        this.noteName = s;
+    NoteName(double place, String us) {
         this.place = place;
         this.usName = us;
     }

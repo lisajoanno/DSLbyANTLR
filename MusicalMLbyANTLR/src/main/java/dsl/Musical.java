@@ -52,6 +52,7 @@ public class Musical {
 
         res += "state s" + StateName.getCurrentStateAndUse() + " {\n";
         res += "\tserialPrint z" + color.getColorName().charAt(0) + " \n";
+        res += "\tserialPrint y" + bpm + " \n";
         res += "\twhen " + 0 +" ms elapsed => s"+StateName.currentState + "\n";
         res += "}";
 

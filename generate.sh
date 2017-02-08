@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-cp input.txt MusicalMLbyANTLR/input.txt
+rm output.txt
+
+cp input*.txt MusicalMLbyANTLR/input.txt
 cd MusicalMLbyANTLR
 mvn exec:java
 cd ..

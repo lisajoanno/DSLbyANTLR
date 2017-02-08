@@ -1,0 +1,21 @@
+color green
+speaker 8
+screen 12
+bpm 300
+key ¤¤
+serial HIGH
+
+score
+
+la3 re4 la3 re4 la3- re4 la3- $- #sol- la
+la- #sol- la- =sol- $- #fa- sol- ¤sol- 
+fa. re+.
+
+la3 re4 la3 re4 la3- re4 la3- $- #sol- la
+sol- $- sol. fa- sol
+do4- si3 la sol. 
+la3 re4 la3 re4 la3- re4 la3- $- #sol- la
+do4- $- do. la3- sol-
+fa. re+.
+re+ fa+ la+ do4
+mi re #sol3- la =fa-
