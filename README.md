@@ -9,6 +9,13 @@ Ce DSL est adressé aux musiciens. Ils peuvent retranscrire leur partition litt�
 
 Le code généré joue la musique sur un haut-parleur et transmet des commandes au LCD pour afficher des animations correspondantes à la dite musique.
 
+
+## <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-48.png"/> En vidéo
+
+Voici une vidéo de démonstration du projet : 
+
+[![MusicalML](img/gotyt.png)](https://www.youtube.com/watch?v=7TK65NVVTaw "Musical ML")
+
 ## <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-48.png"/> Utiliser le DSL
 
 ### Syntaxe
