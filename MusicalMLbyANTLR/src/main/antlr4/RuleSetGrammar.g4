@@ -22,9 +22,12 @@ init_bpm : 'bpm' DIGIT ;
 init_key : 'key' KEY_ALT ;
 init_serial : 'serial' CHOICE ;
 
-init : init_color? init_speaker? init_screen? init_bpm? init_key? init_serial? ;
+init : init_color init_speaker init_screen init_bpm init_key init_serial ;
 macro_def : '-' TEXT '-' '{' note+ '}' ;
 note : SYMBOL? NOTE DIGIT? ('+' | '-')* '.'? ;
 score : (note | '-' TEXT '-' | macro_def)+ ;
 dsl : init macro_def* 'score' score ;
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+ -> skip ;
+
+
+
